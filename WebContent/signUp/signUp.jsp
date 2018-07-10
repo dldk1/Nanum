@@ -185,12 +185,12 @@ function callAutoHypen() {
 		    }
 		  }
 		  if(SamePass_0 > 1) {
-		    alert("동일문자를 3번 이상 사용할 수 없습니다.");
+		    alert("비밀번호에 동일문자를 3번 이상 사용할 수 없습니다.");
 		    return false;
 		  }
 		 
 		  if(SamePass_1 > 1 || SamePass_2 > 1 ) {
-		    alert("연속된 문자열(123 또는 321, abc, cba 등)을\n 3자 이상 사용 할 수 없습니다.");
+		    alert("비밀번호에 연속된 문자열(123 또는 321, abc, cba 등)을\n3자 이상 사용 할 수 없습니다.");
 		    return false;
 		  }
 		
