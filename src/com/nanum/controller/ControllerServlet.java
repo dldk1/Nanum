@@ -72,6 +72,25 @@ public class ControllerServlet extends HttpServlet {
 			site = "signUp/agreement.jsp";			
 			break;
 
+		case "memberModify.nanum":		
+			System.out.println("1231");
+			site = "AdminServlet";			
+			break;			
+		
+		case "delinfo.nanum":
+			site = "DelInfoServlet";
+			System.out.println(site);
+			break;
+		
+		case "getUserInfo.nanum": //사용자 정보 확인
+			site = "GetInfoServlet";
+			System.out.println(site);
+			break;
+		
+		case "updateInfo.nanum": // 사용자 정보 수정
+			site = "UpdateInfoServlet";
+			System.out.println(site);
+			break;	
 		default:
 			response.getWriter().append("error page");
 			break;

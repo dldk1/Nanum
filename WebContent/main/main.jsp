@@ -13,6 +13,45 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="<%=path %>/assets/css/main.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+
+
+<!--  이미지 자동 변경 -->
+<script> 
+$(document).ready(function(){ 
+    var main = $('.bxslider').bxSlider({ 
+    mode: 'fade', 
+    auto: true, //자동으로 슬라이드 
+    controls : true,    //좌우 화살표    
+    autoControls: true, //stop,play 
+    pager:true, //페이징 
+    pause: 3000, 
+    autoDelay: 0,   
+    slideWidth: 800, 
+    speed: 500, 
+    stopAutoOnclick:true
+}); 
+    
+$(".bx-stop").click(function(){ // 중지버튼 눌렀을때 
+    main.stopAuto(); 
+    $(".bx-stop").hide(); 
+    $(".bx-start").show(); 
+    return false; 
+}); 
+ 
+$(".bx-start").click(function(){    //시작버튼 눌렀을때 
+    main.startAuto(); 
+    $(".bx-start").hide(); 
+    $(".bx-stop").show(); 
+    return false; 
+}); 
+ 
+  $(".bx-start").hide();    //onload시 시작버튼 숨김. 
+}); 
+</script> 
+
 <style type="text/css">
 #userId {
 	font-size: 15px;
@@ -67,7 +106,7 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 						</li>
 						<li><a href="left-sidebar.html">Left Sidebar</a></li>
 						<li><a href="right-sidebar.html">Right Sidebar</a></li>
-						<li><a href="no-sidebar.html">No Sidebar</a></li>
+						<li><a href="<%=path %>/memberModify.nanum">회원정보변경</a></li>
 						<!-- <li><a href="index.jsp" onclick="window.open('login/loginForm.jsp','window','width=800,height=600,left=570,top=250')">Login</a></li> -->
 					<%if(id == null){ %>
 					<li><a href="index.jsp" onclick="goPopup()">Login</a></li>
@@ -80,14 +119,17 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 					
 				</nav>
 
-			<!-- Banner -->
-				<section id="banner">
-					<div class="content">
-						<h2>Welcome to TXT by HTML5 UP</h2>
-						<p>A free responsive site template built on HTML5, CSS3, and some other stuff</p>
-						<a href="#main" class="button scrolly">Alright let's go</a>
-					</div>
-				</section>
+			
+				
+				<div class="home__slider"> 
+    <div class="bxslider"> 
+        <div><img src="<%=path %>/images/1.jpg" alt="그림1"></div>
+        <div><img src="<%=path %>/images/2.jpg" alt="그림2"></div> 
+        <div><img src="<%=path %>/images/3.jpg" alt="그림3"></div> 
+        <div><img src="<%=path %>/images/4.jpg" alt="그림4"></div> 
+    </div> 
+</div> 
+				
 
 			<!-- Main -->
 				<section id="main">

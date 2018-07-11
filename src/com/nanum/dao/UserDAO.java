@@ -130,9 +130,10 @@ public class UserDAO {
 		while (rs.next()) {
 			UserVO vo = new UserVO(); // 사용자 정보를 담는 객체
 			vo.setU_idx(rs.getInt("u_idx"));
-			vo.setName(rs.getString("name"));
+			vo.setId(rs.getString("id"));			
 			vo.setPw(rs.getString("pw"));
-			vo.setId(rs.getString("id"));
+			vo.setName(rs.getString("name"));
+			vo.setEmail(rs.getString("email"));
 			vo.setPhone(rs.getString("phone"));
 			vo.setState(rs.getInt("state"));
 			userList.add(vo); // 사용자 정보 객체를 리스트에 담기
@@ -169,10 +170,12 @@ public class UserDAO {
 		if (rs.next()) { // 검색된 데이터가 있으면 로그인 / 패스워드 체크 후 로그인 성공 여부
 			vo = new UserVO();
 			vo.setU_idx(rs.getInt("u_idx"));
-			vo.setName(rs.getString("name"));
 			vo.setId(rs.getString("id"));
-			vo.setPhone(rs.getString("phone"));
 			vo.setPw(rs.getString("pw"));
+			vo.setName(rs.getString("name"));			
+			vo.setEmail(rs.getString("email"));
+			vo.setPhone(rs.getString("phone"));
+			
 		}
 		db.close();
 		return vo;
