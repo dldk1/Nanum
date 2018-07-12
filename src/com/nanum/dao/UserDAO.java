@@ -10,19 +10,19 @@ import com.nanum.vo.UserVO;
 
 public class UserDAO {
 	public static void insertUser(UserVO vo) throws Exception {
-		// DB접속		
+		// DB접속
 		Connection db = DBConn.getConnection();
 		// 쿼리 날려서 유저 정보를 삽입
 		// insert into user (name, phone, id,pw) valuse ('이름','전화번호','이메일','비밀번호');
 		String sql = "insert into user (id, pw, name, email, phone, gender) values (?, ?, ?, ?, ?, ?)";
-		PreparedStatement pstmt = db.prepareStatement(sql);		
+		PreparedStatement pstmt = db.prepareStatement(sql);
 		pstmt.setString(1, vo.getId());
-		
+
 		pstmt.setString(2, vo.getPw());
 		pstmt.setString(3, vo.getName());
 		pstmt.setString(4, vo.getEmail());
 		pstmt.setString(5, vo.getPhone());
-		pstmt.setString(6, vo.getGender());		
+		pstmt.setString(6, vo.getGender());
 
 		// 쿼리실행
 		pstmt.executeUpdate();
@@ -65,12 +65,34 @@ public class UserDAO {
 	// String id, pw 를 매개변수로 넣어서 UserVO값을 반환
 	// 들어가는 변수 String id, String pw
 	// 리턴 받는 형은 UserVO
+
 	public static Boolean getUser(String id, String pw) throws Exception {
 
 		Connection db = DBConn.getConnection();
 		System.out.println(id);
 		System.out.println(pw);
-		Boolean isLogin=false;
+		Boolean isLogin = false;
+		// 쿼리 날려서 유저 정보를 검색
+		String sql = "select * from user where id = ? and pw = ?";
+
+		PreparedStatement pstmt = db.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.setString(2, pw);
+
+		UserVO vo = null;
+		ResultSet rs = pstmt.executeQuery();
+
+		if (rs.next()) { // 검색된 데이터가 있으면 로그인 / 패스워드 체크 후 로그인 성공 여부
+			isLogin = true;
+			db.close();
+		}
+		return isLogin;
+	}
+
+	public static UserVO getUser2(String id, String pw) throws Exception {
+
+		Connection db = DBConn.getConnection();
+
 		// 쿼리 날려서 유저 정보를 검색
 		String sql = "select * from user where id = ? and pw = ?";
 
@@ -80,15 +102,18 @@ public class UserDAO {
 		UserVO vo = null;
 		ResultSet rs = pstmt.executeQuery();
 		if (rs.next()) { // 검색된 데이터가 있으면 로그인 / 패스워드 체크 후 로그인 성공 여부
-			isLogin=true;		
+			vo = new UserVO();
+			vo.setName(rs.getString("name"));
+			vo.setId(rs.getString("id"));
+			vo.setPhone(rs.getString("phone"));
 		}
 		db.close();
-		return isLogin;
+		return vo;
 	}
 
 	/*
-	 * 사용법 : 리턴 타입은 Boolean ID가 있으면 true 없으면 false Boolean isid=idCheck(id);
-	 * isID값을 비교
+	 * 사용법 : 리턴 타입은 Boolean ID가 있으면 true 없으면 false Boolean isid=idCheck(id); isID값을
+	 * 비교
 	 */
 	public static Boolean idCheck(String id) throws Exception {
 
@@ -105,7 +130,7 @@ public class UserDAO {
 		db.close();
 		return isid;
 	}
-	
+
 	// 사용자 정보 리스트를 가져오는 메tho드
 	// UserVO는 사용자 하나의 정보
 	// 리스트에 UserVO를 담으면 여러개의 사용자 정보를 받아 올 수 있겠네 ?
@@ -130,7 +155,7 @@ public class UserDAO {
 		while (rs.next()) {
 			UserVO vo = new UserVO(); // 사용자 정보를 담는 객체
 			vo.setU_idx(rs.getInt("u_idx"));
-			vo.setId(rs.getString("id"));			
+			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pw"));
 			vo.setName(rs.getString("name"));
 			vo.setEmail(rs.getString("email"));
@@ -155,50 +180,52 @@ public class UserDAO {
 		pstmt.executeUpdate();
 		db.close();
 	}
-	public static UserVO getUserInfo(String u_idx) throws Exception {
+
+	public static UserVO getUserInfo(String id) throws Exception {
 
 		Connection db = DBConn.getConnection();
 
 		// 쿼리 날려서 유저 정보를 검색
-		String sql = "select * from user where u_idx = ?";
+		String sql = "select * from user where id = ?";
 
 		PreparedStatement pstmt = db.prepareStatement(sql);
-		pstmt.setString(1, u_idx);
-		
-		UserVO vo = null; //사용자 정보를 담는 객체
+		pstmt.setString(1, id);
+
+		UserVO vo = null; // 사용자 정보를 담는 객체
 		ResultSet rs = pstmt.executeQuery();
 		if (rs.next()) { // 검색된 데이터가 있으면 로그인 / 패스워드 체크 후 로그인 성공 여부
 			vo = new UserVO();
-			vo.setU_idx(rs.getInt("u_idx"));
 			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pw"));
-			vo.setName(rs.getString("name"));			
+			vo.setName(rs.getString("name"));
 			vo.setEmail(rs.getString("email"));
 			vo.setPhone(rs.getString("phone"));
-			
+
 		}
 		db.close();
 		return vo;
 	}
-	//사용자 정보 수정
+
+	// 사용자 정보 수정
 	public static void updateInfo(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		Connection db = DBConn.getConnection();
 		// 쿼리 날려서 유저 정보를 삽입
 		// insert into user (name, phone, id,pw) valuse ('이름','전화번호','이메일','비밀번호');
-		String sql = "update user set name = ?, pw = ?, id= ?, phone = ? where u_idx = ?";
+		String sql = "update user set name = ?, pw = ?, id= ?, phone = ?, email=? where id=?";
 		PreparedStatement pstmt = db.prepareStatement(sql);
 		pstmt.setString(1, vo.getName());
 		pstmt.setString(2, vo.getPw());
 		pstmt.setString(3, vo.getId());
 		pstmt.setString(4, vo.getPhone());
-		pstmt.setInt(5, vo.getU_idx());
+		pstmt.setString(5, vo.getEmail());		
+		pstmt.setString(6, vo.getId());
 
 		// 쿼리실행
 		pstmt.executeUpdate();
 		db.close();
 	}
-	
+
 	public static int getMemberId(String id) throws Exception {
 
 		Connection db = DBConn.getConnection();
@@ -218,6 +245,7 @@ public class UserDAO {
 		db.close();
 		return ret;
 	}
+
 	public static int getMemberEmail(String email) throws Exception {
 
 		Connection db = DBConn.getConnection();

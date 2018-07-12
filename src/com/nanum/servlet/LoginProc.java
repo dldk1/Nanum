@@ -38,11 +38,12 @@ public class LoginProc extends HttpServlet {
 		// TODO Auto-generated method stub
 		// userid 와 userpw를 전달받아서
 		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String pw = request.getParameter("pw");		
 		// UserVO를 전달해도 되고
 		UserVO vo = new UserVO();
 		vo.setId(id);
 		vo.setPw(pw);		
+		
 		String path = request.getContextPath();
 		PrintWriter out = response.getWriter();
 		// UserDAO 에 InsertUser 메소드를 만드거처럼
@@ -52,16 +53,17 @@ public class LoginProc extends HttpServlet {
 		// ID가 있는 사용자정보를 받아와서
 		// 검색 결과를 비교해서 ID/PW 체크 후
 		// 맞으면 맞다라고 하고 페이지 이동
-		// 틀리면 틀리다고 하고 다시 로그인
+		// 틀리면 틀리다고 하고 다시 로그인	
 
 		try {			
+			UserVO uvo = UserDAO.getUser2(id, pw);
 			// if (UserDAO.GetUser(vo)) {
-			if (UserDAO.getUser(id, pw)) {
+			if (uvo != null) {
 				// 로그인 성공시 유지 시켜주기 위해 세션 값 설정
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id); // 값을 저장					
-				// 로그인 성공
-				System.out.println(id);
+				session.setAttribute("name", uvo.getName());					
+							
 				out.println("YES");
 //				response.sendRedirect(path + "/login.nanum");
 				RequestDispatcher dis = request.getRequestDispatcher("login.nanum");

@@ -42,18 +42,16 @@ public class UpdateInfoServlet extends HttpServlet {
 		// 업데이트 쿼리가 실핼하는 UserDAO를 만들어서 호출
 		// 성공하면 다시 amdin.jsp에서 ajax로 다시 가서 success 쪽으로 성공 메시지를 보내어서 성공 했다 라고 하고 다시 페이지
 		// 로드
-
-		System.out.println("admin.jsp에서 들어온 모달");
-		String u_idx = request.getParameter("u_idx");		
+		
+			
 		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String pw = request.getParameter("newPw");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		System.out.println(u_idx + " " + id + " " + pw + " " + name + " " + email + " " + phone);
+		System.out.println(id + " " + pw + " " + name + " " + email + " " + phone);
 		
-		UserVO vo = new UserVO();
-		vo.setU_idx(Integer.parseInt(u_idx));
+		UserVO vo = new UserVO();		
 		vo.setId(id);
 		vo.setPw(pw);
 		vo.setName(name);

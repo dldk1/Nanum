@@ -19,14 +19,14 @@ import com.nanum.vo.UserVO;
 /**
  * Servlet implementation class AdminServlet
  */
-@WebServlet("/AdminServlet")
-public class AdminServlet extends HttpServlet {
+@WebServlet("/MemberModify")
+public class MemberModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AdminServlet() {
+	public MemberModify() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,7 +40,7 @@ public class AdminServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		String site = "admin/admin.jsp";
+		String site = "member/memberModify.jsp";
 
 		// 로그인이 되었는지 체크(세션 session)
 		HttpSession session = request.getSession();

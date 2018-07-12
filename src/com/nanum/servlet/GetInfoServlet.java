@@ -33,12 +33,12 @@ public class GetInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// u_idx 값을 받아 와서 UserDAO에서 사용자 정보를 가져오기
-		String u_idx = request.getParameter("u_idx");
-		System.out.println(u_idx);
+		String id = request.getParameter("id");
+		System.out.println(id);
 		try {
-			UserVO vo = UserDAO.getUserInfo(u_idx);
+			UserVO vo = UserDAO.getUserInfo(id);
 			// int uidx = vo.getU_idx();
-			String id = "/" + vo.getId();
+			//String id = "/" + vo.getId();
 			String pw = "/" + vo.getPw();
 			String name = "/" + vo.getName();
 			String email = "/" + vo.getEmail();
@@ -46,7 +46,7 @@ public class GetInfoServlet extends HttpServlet {
 
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("text/plain; charset=utf-8");
-			response.getWriter().println("OK/" + u_idx + id + pw + name + email + phone);
+			response.getWriter().println("OK/" + id + pw + name + email + phone);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

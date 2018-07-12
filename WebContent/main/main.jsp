@@ -3,8 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	String path = request.getContextPath();
+	String name = (String) session.getAttribute("name");
 	String id = (String) session.getAttribute("id");
-	System.out.println(id);
+	
 %>
 <html>
 <head>
@@ -16,7 +17,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
-
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!--  이미지 자동 변경 -->
 <script> 
@@ -105,30 +111,55 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 							</ul>
 						</li>
 						<li><a href="left-sidebar.html">Left Sidebar</a></li>
-						<li><a href="right-sidebar.html">Right Sidebar</a></li>
-						<li><a href="<%=path %>/memberModify.nanum">회원정보변경</a></li>
-						<!-- <li><a href="index.jsp" onclick="window.open('login/loginForm.jsp','window','width=800,height=600,left=570,top=250')">Login</a></li> -->
+						
+						<li><a href="">123123</a></li>																
 					<%if(id == null){ %>
 					<li><a href="index.jsp" onclick="goPopup()">Login</a></li>
-					<%}else{ %>					
+					<%}else if(id.equals("admin")){ %>
+					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
 					<li><a href="logout.nanum">Logout</a></li>
-					<b id = userId> <a href="#"><%out.print(id);%></a> 님 안녕하세요!</b>	
-					<%} %>
-							
-					</ul>
-					
-				</nav>
-
-			
+					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
+					<%}else{ %>	
+					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
+					<li><a href="logout.nanum">Logout</a></li>
+					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님 안녕하세요!</b>	
+					<%} %>							
+					</ul>					
+				</nav>		
 				
-				<div class="home__slider"> 
-    <div class="bxslider"> 
-        <div><img src="<%=path %>/images/1.jpg" alt="그림1"></div>
-        <div><img src="<%=path %>/images/2.jpg" alt="그림2"></div> 
-        <div><img src="<%=path %>/images/3.jpg" alt="그림3"></div> 
-        <div><img src="<%=path %>/images/4.jpg" alt="그림4"></div> 
-    </div> 
-</div> 
+<div class="container">
+		<h1><p class="text-center"><b>나눔의 민족</b></p></h1>
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="<%=path %>/images/05.jpg" style="width: 100%;">
+				</div>
+
+				<div class="item">
+					<img src="<%=path %>/images/06.jpg" style="width: 100%;">
+				</div>
+
+			</div>
+
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#myCarousel"
+				data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
 				
 
 			<!-- Main -->
@@ -160,6 +191,8 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 
 								<!-- Features -->
 									<section class="box features">
+									
+									
 										<h2 class="major"><span>A Major Heading</span></h2>
 										<div>
 											<div class="row">
@@ -325,7 +358,7 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 
 			<!-- Footer -->
 				<footer id="footer">
-					<div class="container">
+					
 						<div class="row gtr-200">
 							<div class="col-12">
 
