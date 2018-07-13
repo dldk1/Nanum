@@ -89,6 +89,31 @@ public class UserDAO {
 		return isLogin;
 	}
 
+	public static UserVO getUserInfoForAdmin(String u_idx) throws Exception {
+
+		Connection db = DBConn.getConnection();
+
+		// 쿼리 날려서 유저 정보를 검색
+		String sql = "select * from user where u_idx = ?";
+
+		PreparedStatement pstmt = db.prepareStatement(sql);
+		pstmt.setString(1, u_idx);
+		
+		UserVO vo = null; //사용자 정보를 담는 객체
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) { // 검색된 데이터가 있으면 로그인 / 패스워드 체크 후 로그인 성공 여부
+			vo = new UserVO();
+			vo.setU_idx(rs.getInt("u_idx"));
+			vo.setId(rs.getString("id"));
+			vo.setName(rs.getString("name"));
+			vo.setEmail(rs.getString("email"));
+			vo.setPhone(rs.getString("phone"));
+			vo.setPw(rs.getString("pw"));
+		}
+		db.close();
+		return vo;
+	}
+	
 	public static UserVO getUser2(String id, String pw) throws Exception {
 
 		Connection db = DBConn.getConnection();

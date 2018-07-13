@@ -5,8 +5,12 @@
 <%
 	String path = request.getContextPath();
 	String name = (String) session.getAttribute("name");
-	String id = (String) session.getAttribute("id");	
+	String id = (String) session.getAttribute("id");
+	
 %>
+
+
+</style>
 <head>
 <title>Left Sidebar - TXT by HTML5 UP</title>
 <meta charset="utf-8" />
@@ -15,7 +19,23 @@
 <link rel="stylesheet" href="<%=path%>/assets/css/main.css" />
 <link rel="stylesheet" href="<%=path %>/signUp/signUp.css" />
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style type="text/css">
+#userId {
+	font-size: 15px;
+	padding-left: 100px;	
+	text-decoration: none;
+}
+footer{
+margin:auto;
+position: relative;
+font-size: 12px;
+text-decoration: none;
+  text-align: center;
+  text-indent: 6px;  
+color: gray;
 
+}
+</style>
 <script type="text/javascript">
 
 function getUserInfo(id) {	
@@ -131,26 +151,61 @@ function getContextPath() {
 
 		<!-- Nav -->
 		<nav id="nav">
-		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="#">Dropdown</a>
-				<ul>
-					<li><a href="#">Lorem ipsum dolor</a></li>
-					<li><a href="#">Magna phasellus</a></li>
-					<li><a href="#">Phasellus consequat</a>
+					<ul>
+						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
+						
+						<li><a href="#">소개</a>
 						<ul>
-							<li><a href="#">Lorem ipsum dolor</a></li>
-							<li><a href="#">Phasellus consequat</a></li>
-							<li><a href="#">Magna phasellus</a></li>
-							<li><a href="#">Etiam dolore nisl</a></li>
-						</ul></li>
-					<li><a href="#">Veroeros feugiat</a></li>
-				</ul></li>
-			<li class="current"><a href="left-sidebar.html">Left Sidebar</a></li>
-			<li><a href="right-sidebar.html">Right Sidebar</a></li>
-			<li><a href="no-sidebar.html">No Sidebar</a></li>
-		</ul>
-		</nav>
+						<li><a href="introduce.html">개발진들</a></li>
+						</ul>
+						</li>
+						
+						<li><a href="#">공지사항</a>
+						<ul>
+						<li><a href="#">개인정보 주의</a></li>
+						</ul>
+						</li>
+						
+						<li>
+							<a href="#">배달나눔</a>
+							<ul>
+								<li><a href="#">현재 인기있는 나눔 물품</a></li>
+								<li><a href="#"> 나눔 예정인 물품</a></li>
+								<li>
+									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
+									
+								</li>
+								
+							</ul>
+						</li>
+						<li>
+							<a href="#">이벤트</a>
+							<ul>
+								<li><a href="#">협력업체 이벤트</a></li>
+								<li><a href="#">시간할인 이벤트</a></li>
+								<li>
+									<a href="#">별점할인 이벤트</a>
+									
+								</li>
+					</ul>
+					
+						<li>
+						<a href="#">고객센터</a>
+						</li>			
+															
+					<%if(id == null){ %>
+					<li><a href="index.jsp" onclick="goPopup()">Login</a></li>
+					<%}else if(id.equals("admin")){ %>
+					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
+					<li><a href="logout.nanum">Logout</a></li>
+					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
+					<%}else{ %>	
+					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
+					<li><a href="logout.nanum">Logout</a></li>
+					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님 안녕하세요!</b>	
+					<%} %>							
+					</ul>					
+				</nav>		
 
 		<!-- Main -->
 		<section id="main">
@@ -205,7 +260,7 @@ function getContextPath() {
 								out.print(name);
 							%> 님 안녕하세요!
 						</h3></br>
-						<p>나눔의 민족 개인정보수정 페이지 입니다.</p>						
+						<p>나눔의 민족 회원탈퇴 페이지 입니다.</p>						
 						</header> <section> <div class="contentwrap">
   <article class="container">
     <div class="page-header">
@@ -228,48 +283,24 @@ function getContextPath() {
     </form>
     <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label"></label>
-    <div class="col-sm-6"></br>
-      <button type="submit" class="btn btn-primary" onclick="deleteUserInfo()" >회원탈퇴</button>
+    <div class="col-sm-6" style="margin: auto; width: 20%;"><br><br>
+      <button type="submit" class="btn btn-primary" onclick="deleteUserInfo()" style="margin: auto;">회원탈퇴</button>
     </div>
     </div>    
   </article>
 </div>
 						</section>
-					</div>
-					<div class="col-12">
-
-						<!-- Contact -->
-						<section>
-						<h2 class="major">
-							<span>Get in touch</span>
-						</h2>
-						<ul class="contact">
-							<li><a class="icon fa-facebook" href="#"><span
-									class="label">Facebook</span></a></li>
-							<li><a class="icon fa-twitter" href="#"><span
-									class="label">Twitter</span></a></li>
-							<li><a class="icon fa-instagram" href="#"><span
-									class="label">Instagram</span></a></li>
-							<li><a class="icon fa-dribbble" href="#"><span
-									class="label">Dribbble</span></a></li>
-							<li><a class="icon fa-linkedin" href="#"><span
-									class="label">LinkedIn</span></a></li>
-						</ul>
-						</section>
-
-					</div>
+					</div>				
 				</div>
 
 				<!-- Copyright -->
-				<div id="copyright">
-					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved</li>
-						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
 
-			</div>
-			</footer>
+<footer><br><br>
+(주) 나눔의 민족<br>
+대구가톨릭대학교 공과대학 534호<br>
+대표전화 : 010-1234-1234<br>
+대표메일 : email@email.com
+</footer><br><br><br>
 
 		</div>
 

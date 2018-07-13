@@ -13,14 +13,14 @@ import com.nanum.vo.UserVO;
 /**
  * Servlet implementation class GetInfoServlet
  */
-@WebServlet("/GetInfoServlet")
-public class GetInfoServlet extends HttpServlet {
+@WebServlet("/GetInfoForUserServlet")
+public class GetInfoForUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public GetInfoServlet() {
+	public GetInfoForUserServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

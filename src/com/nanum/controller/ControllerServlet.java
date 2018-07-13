@@ -42,6 +42,11 @@ public class ControllerServlet extends HttpServlet {
 		System.out.println(suburl);
 
 		switch (suburl) {
+
+		case "main.nanum": // 메인 페이지
+			site = "main/main.jsp";
+			break;
+
 		case "login.nanum": // 로그인 페이지
 			site = "login/loginForm.jsp";
 			break;
@@ -63,10 +68,6 @@ public class ControllerServlet extends HttpServlet {
 			site = "SignUpProc";
 			break;
 
-		case "main.nanum": // 메인 페이지
-			site = "main/main.jsp";
-			break;
-
 		case "agreement.nanum": // 회원가입시 이용약관 페이지
 			site = "signUp/agreement.jsp";
 			break;
@@ -80,33 +81,37 @@ public class ControllerServlet extends HttpServlet {
 			site = "member/myPage.jsp";
 			break;
 
-		case "memberModify.nanum": // 회원가입 페이지
+		case "memberModify.nanum": // 개인정보변경 페이지
 			site = "member/memberModify.jsp";
 			break;
 
-		case "getUserInfo.nanum": // 사용자 정보 확인
-			site = "GetInfoServlet";
-			
-			break;
-
-		case "updateInfo.nanum": // 사용자 정보 수정
-			site = "UpdateInfoServlet";			
+		case "updateInfo.nanum": // 사용자 정보 수정 처리
+			site = "UpdateInfoServlet";
 			break;
 
 		case "memberDelete.nanum": // 회원탈퇴페이지
 			site = "member/memberDelete.jsp";
 			System.out.println(site);
 			break;
-			
+
+		case "getUserInfoForAdmin.nanum": // 관리자용 사용자 정보 확인
+			site = "GetInfoForAdminServlet";
+			break;
+
+		case "getUserInfoForUser.nanum": // 유저용 사용자 정보 확인
+			site = "GetInfoForUserServlet";
+			break;
+
 		case "delInfoForAdmin.nanum": // 관리자용 사용자 정보 삭제 , 회원탈퇴
 			site = "DelInfoForAdminServlet";
 			System.out.println(site);
 			break;
+
 		case "delInfoForUser.nanum": // 유저용 사용자 정보 삭제 , 회원탈퇴
 			site = "DelInfoForUserServlet";
 			System.out.println(site);
 			break;
-			
+
 		default:
 			response.getWriter().append("error page");
 			break;

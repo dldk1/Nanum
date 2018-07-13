@@ -65,7 +65,14 @@ $(".bx-start").click(function(){    //시작버튼 눌렀을때
 	padding-left: 100px;	
 	text-decoration: none;
 }
-
+footer{
+position: relative;
+font-size: 12px;
+text-decoration: none;
+  text-align: center;
+  text-indent: 6px;  
+color: gray;
+}
 </style>
 <script>				
 function goPopup() {			
@@ -353,18 +360,15 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<!-- /.container -->
 
-	<footer class="container-fluid text-center">
-		<p>나눔의 민족</p>
-	</footer>
+<footer><br><br>
+(주) 나눔의 민족<br>
+대구가톨릭대학교 공과대학 534호<br>
+대표전화 : 010-1234-1234<br>
+대표메일 : email@email.com
+</footer><br><br><br>
 
 		
 
