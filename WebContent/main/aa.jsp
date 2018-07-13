@@ -1,22 +1,18 @@
+<%@page import="javax.swing.BorderFactory"%>
+<%@page import="javax.swing.JPanel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	String path = request.getContextPath();
-	String name = (String) session.getAttribute("name");
-	String id = (String) session.getAttribute("id");
-	
+	request.setCharacterEncoding("UTF-8");
 %>
+<!DOCTYPE html>
 <html>
 <head>
-<title>TXT by HTML5 UP</title>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="<%=path %>/assets/css/main.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -24,8 +20,10 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+
 <!--  이미지 자동 변경 -->
-<script> 
+<!-- <script> 
 $(document).ready(function(){ 
     var main = $('.bxslider').bxSlider({ 
     mode: 'fade', 
@@ -56,95 +54,22 @@ $(".bx-start").click(function(){    //시작버튼 눌렀을때
  
   $(".bx-start").hide();    //onload시 시작버튼 숨김. 
 }); 
-</script> 
+</script>  -->
 
-<style type="text/css">
-
-#userId {
-	font-size: 15px;
-	padding-left: 100px;	
-	text-decoration: none;
-}
-
-</style>
-<script>				
-function goPopup() {			
-window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=250');			
-// window.open(URL,"팝업 구분값(팝업 1개일 경우 상관없음)","팝업 창 옵션")				
-}				
-</script>
 </head>
-<body class="homepage is-preload">
-		<div id="page-wrapper">
 
-			<!-- Header -->
-				<header id="header">
-					<div class="logo container">
-						<div>
-							
-							<p>나눔의 민족! 여기와서 나누자!!</p>
-						</div>
-					</div>
-				</header>
+<body>
+	<!-- <div class="home__slider"> 
+    <div class="bxslider"> 
+        <div><img src="Test/images/01.jpg" alt="그림1"></div>
+        <div><img src="Test/images/02.jpg" alt="그림2"></div> 
+        <div><img src="Test/images/03.jpg" alt="그림3"></div> 
+        <div><img src="Test/images/04.jpg" alt="그림4"></div> 
+    </div> 
+</div><br><br> -->
 
-			<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
-						
-						<li><a href="#">소개</a>
-						<ul>
-						<li><a href="introduce.html">개발진들</a></li>
-						</ul>
-						</li>
-						
-						<li><a href="#">공지사항</a>
-						<ul>
-						<li><a href="#">개인정보 주의</a></li>
-						</ul>
-						</li>
-						
-						<li>
-							<a href="#">배달나눔</a>
-							<ul>
-								<li><a href="#">현재 인기있는 나눔 물품</a></li>
-								<li><a href="#"> 나눔 예정인 물품</a></li>
-								<li>
-									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
-									
-								</li>
-								
-							</ul>
-						</li>
-						<li>
-							<a href="#">이벤트</a>
-							<ul>
-								<li><a href="#">협력업체 이벤트</a></li>
-								<li><a href="#">시간할인 이벤트</a></li>
-								<li>
-									<a href="#">별점할인 이벤트</a>
-									
-								</li>
-					</ul>
-					
-						<li>
-						<a href="#">고객센터</a>
-						</li>			
-															
-					<%if(id == null){ %>
-					<li><a href="index.jsp" onclick="goPopup()">Login</a></li>
-					<%}else if(id.equals("admin")){ %>
-					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
-					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
-					<%}else{ %>	
-					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
-					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님 안녕하세요!</b>	
-					<%} %>							
-					</ul>					
-				</nav>		
-				
+
+
 	<div class="container">
 		<h1><p class="text-center"><b>나눔의 민족</b></p></h1>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -158,11 +83,11 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="<%=path %>/images/05.jpg" style="width: 100%;">
+					<img src="Test/images/05.jpg" style="width: 100%;">
 				</div>
 
 				<div class="item">
-					<img src="<%=path %>/images/06.jpg" style="width: 100%;">
+					<img src="Test/images/06.jpg" style="width: 100%;">
 				</div>
 
 			</div>
@@ -182,16 +107,45 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 	<br>
 
 
-	<!--  구글지도 
-	 <iframe
+	<!--  구글지도  -->
+	<iframe
 		src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7792.376720191432!2d128.805493756368!3d35.9128068876473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3566726281568c53%3A0x73386aadf1c5fa44!2z64yA6rWs6rCA7Yao66at64yA7ZWZ6rWQ!5e1!3m2!1sko!2skr!4v1530689750167"
 		width="400" height="300" frameborder="0" style="border: 0"
-		allowfullscreen></iframe> -->
+		allowfullscreen></iframe>
 	<br>
 	<br>
 	<br>
 	<br>
 
+
+	<!-- <div class="container-fluid">
+  <h1>이용안내</h1>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3" style="background-color:lavender;">
+      <b>음식점 검색</b><br>
+      현재 주문하고자 하는 음식점을 검색합니다. <br><br>
+      <a href="">나와 가까운 음식점</a><br>
+      <a href="">메뉴 추천받기</a>
+    </div>
+      <div class="col-xs-6 col-sm-3" style="background-color:lavender;">
+      <b>진행중인 게시판</b><br>
+      현재 최소주문금액을 맞추기 위해 진행중인 게시판을 검색합니다<br><br>
+      <a href="">게시판 바로가기</a><br>
+    </div>
+     <div class="col-xs-6 col-sm-3" style="background-color:lavender;">
+      <b>원활한 결제</b><br>
+      결제결제<br><br>
+      <a href="">결제하기</a><br>
+    </div>
+     
+  </div>
+</div><br><br><br> -->
+
+
+
+	<!--  테스트 -->
+	<!-- Page Content -->
+	<!-- Page Content -->
 	<div class="container">
 
 		<div class="row my-4">
@@ -366,16 +320,5 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 		<p>나눔의 민족</p>
 	</footer>
 
-		
-
-		<!-- Scripts -->
-			<script src="<%=path %>/assets/js/jquery.min.js"></script>
-			<script src="<%=path %>/assets/js/jquery.dropotron.min.js"></script>
-			<script src="<%=path %>/assets/js/jquery.scrolly.min.js"></script>
-			<script src="<%=path %>/assets/js/browser.min.js"></script>
-			<script src="<%=path %>/assets/js/breakpoints.min.js"></script>
-			<script src="<%=path %>/assets/js/util.js"></script>
-			<script src="<%=path %>/assets/js/main.js"></script>
-
-	</body>
+</body>
 </html>

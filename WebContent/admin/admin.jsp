@@ -108,7 +108,7 @@ function deleteUserInfo() {
 
 	$.ajax({
 		type : 'POST',
-		url : path + "/delinfo.nanum",
+		url : path + "/delinfoForAdmin.nanum",
 		data : {
 			"u_idx" : u_idx
 		},

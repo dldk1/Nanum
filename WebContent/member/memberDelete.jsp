@@ -18,22 +18,53 @@
 
 <script type="text/javascript">
 
+function getUserInfo(id) {	
+
+	var path = getContextPath();
+	console.log(path);
+	$.ajax({
+
+		type : 'POST',
+		url : path + "/getUserInfo.nanum",
+
+		data : {
+			"id" : id
+		},
+
+		success : function(data) {
+			console.log(data);
+			var test = data.split('/');
+			if ($.trim(test[0]) == "OK") {
+				console.log('정보 불러오기 성공');
+				console.log(test);
+				$("#id").val(test[1]); //모달에서 id 값이 name인 곳에 값 설정 u_idx + name + pw + email + phone				
+				$("#hiddenPw").val(test[2]); 						
+				//alert("정보 불러오기 성공");
+			} else {
+				console.log('서버 에러');
+			}
+		},
+	}); // end ajax
+}
+
 function deleteUserInfo() {
+	
+	 if(!check()){
+		 return;
+	 }	
 	var pw = $('#pw').val();
 	var id = $('#id').val();
 	
 	console.log(id);	
 	console.log(pw);
 	
-	alert("정말로 회원탈퇴를 하시겠습니까?");
 	var path = getContextPath();
 	console.log(path);
-	// 전달 매개변수는 idx(사용자 번호)
-	// url 접속 정보(서블릿으로 보내는) 
+	
 
 	$.ajax({
 		type : 'POST',
-		url : path + "/delInfo.nanum",
+		url : path + "/delInfoForUser.nanum",
 		data : {
 			"id" : id,
 			"pw" : pw
@@ -43,14 +74,8 @@ function deleteUserInfo() {
 			if ($.trim(data) == "OK") {
 				console.log('수정이나 삭제 완료');
 				alert("회원탈퇴가 완료 되었습니다.");
-				var path = '/' + location.pathname.split('/')[1];
-				alert(path+ "/logout.nanum");
-				//location.href = path+ "/logout.nanum";
-				//location.reload();
-				//var url = "path+ "/logout.nanum"; 
-				alert(data);			
-				//$(location).attr('href',url);				
-			    
+				var path = '/' + location.pathname.split('/')[1];				
+				location.href = path+ "/logout.nanum";			    
 			} else {
 				console.log('서버 에러');
 				alert("패스워드가 다릅니다.");
@@ -73,27 +98,23 @@ function getContextPath() {
 	function check() {	
 		var pw = $('#pw').val();
 		var hiddenPw = $('#hiddenPw').val();
-		console.log($('#hiddenPw').val());
-		console.log($('#pw').val());
-		
-		var aa = true;
 		
  		if (pw=="") {	 		
 			alert("비밀번호를 입력하세요.");
-			aa=false;
+			return false;
 		}
 		
  		else if (pw.trim() != hiddenPw.trim()) {
 			alert("비밀번호가 일치하지 않습니다.");
-			aa= false;
+			return false;
 		}		
  		
-		return aa;
+		return true;
 		
 	}
 </script>
 </head>
-<body class="is-preload">
+<body class="is-preload" onload="getUserInfo('<%=id%>')">
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -189,7 +210,7 @@ function getContextPath() {
   <article class="container">
     <div class="page-header">
     </div>
-    <form class="form-horizontal" method="post" name = "signUp" id="signUp">
+    <form class="form-horizontal" method="post">
     <div class="form-group">
     <label for="inputEmail" class="col-sm-2 control-label">아이디</label>
     <div class="col-sm-6">
@@ -208,7 +229,7 @@ function getContextPath() {
     <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label"></label>
     <div class="col-sm-6"></br>
-      <button type="submit" class="btn btn-primary" form="signUp" onclick="deleteUserInfo()" >회원탈퇴</button>
+      <button type="submit" class="btn btn-primary" onclick="deleteUserInfo()" >회원탈퇴</button>
     </div>
     </div>    
   </article>

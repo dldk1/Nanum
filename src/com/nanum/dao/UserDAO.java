@@ -174,9 +174,8 @@ public class UserDAO {
 		Boolean isDelete=false;
 		
 		System.out.println(id);
-		System.out.println(pw);
+		System.out.println(pw);		
 		
-		if(getUser(id,pw)) {
 			Connection db = DBConn.getConnection();
 
 			String sql = "delete from user where id = ?";
@@ -188,11 +187,24 @@ public class UserDAO {
 			db.close();
 			
 			isDelete=true;
-		};
+		
 	
-		return isDelete;
+		return  isDelete;
 	}
 
+	public static void delInfo(String u_idx) throws Exception {
+		// TODO Auto-generated method stub
+		Connection db = DBConn.getConnection();
+
+		String sql = "delete from user where u_idx=?";
+		PreparedStatement pstmt = db.prepareStatement(sql);
+		pstmt.setString(1, u_idx);
+
+		// 쿼리실행
+		pstmt.executeUpdate();
+		db.close();
+	}
+	
 	public static UserVO getUserInfo(String id) throws Exception {
 
 		Connection db = DBConn.getConnection();
@@ -277,4 +289,5 @@ public class UserDAO {
 		db.close();
 		return ret;
 	}
+
 }

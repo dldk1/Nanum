@@ -93,13 +93,17 @@ public class ControllerServlet extends HttpServlet {
 			site = "UpdateInfoServlet";			
 			break;
 
-		case "memberDelete.nanum": // 사용자 정보 수정
+		case "memberDelete.nanum": // 회원탈퇴페이지
 			site = "member/memberDelete.jsp";
 			System.out.println(site);
 			break;
 			
-		case "delInfo.nanum": // 사용자 정보 삭제 , 회원탈퇴
-			site = "DelInfoServlet";
+		case "delInfoForAdmin.nanum": // 관리자용 사용자 정보 삭제 , 회원탈퇴
+			site = "DelInfoForAdminServlet";
+			System.out.println(site);
+			break;
+		case "delInfoForUser.nanum": // 유저용 사용자 정보 삭제 , 회원탈퇴
+			site = "DelInfoForUserServlet";
 			System.out.println(site);
 			break;
 			

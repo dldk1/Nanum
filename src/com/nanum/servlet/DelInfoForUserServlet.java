@@ -15,13 +15,13 @@ import com.nanum.dao.UserDAO;
  * Servlet implementation class DelInfoServlet
  */
 @WebServlet("/DelInfoServlet")
-public class DelInfoServlet extends HttpServlet {
+public class DelInfoForUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DelInfoServlet() {
+	public DelInfoForUserServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,6 +35,7 @@ public class DelInfoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// u_idx 값이 넘어 오면 user 테이블에서 삭제 처리 (UserDAO에 메소드 추가)
 		// u_idx 값 받기
+		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		// UserDAO.삭제 메소드 호출
