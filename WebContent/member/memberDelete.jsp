@@ -5,7 +5,7 @@
 <%
 	String path = request.getContextPath();
 	String name = (String) session.getAttribute("name");
-	String id = (String) session.getAttribute("id");
+	String id = (String) session.getAttribute("id");	
 %>
 <head>
 <title>Left Sidebar - TXT by HTML5 UP</title>
@@ -13,46 +13,84 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="<%=path%>/assets/css/main.css" />
+<link rel="stylesheet" href="<%=path %>/signUp/signUp.css" />
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 
-function getUserInfo(id) {	
-
+function deleteUserInfo() {
+	var pw = $('#pw').val();
+	var id = $('#id').val();
+	
+	console.log(id);	
+	console.log(pw);
+	
+	alert("정말로 회원탈퇴를 하시겠습니까?");
 	var path = getContextPath();
 	console.log(path);
+	// 전달 매개변수는 idx(사용자 번호)
+	// url 접속 정보(서블릿으로 보내는) 
+
 	$.ajax({
-
 		type : 'POST',
-		url : path + "/getUserInfo.nanum",
-
+		url : path + "/delInfo.nanum",
 		data : {
-			"id" : id
+			"id" : id,
+			"pw" : pw
 		},
-
 		success : function(data) {
 			console.log(data);
-			var test = data.split('/');
-			if ($.trim(test[0]) == "OK") {
-				console.log('정보 불러오기 성공');
-				console.log(test);
-				$("#id").val(test[2]); //모달에서 id 값이 name인 곳에 값 설정 u_idx + name + pw + email + phone
-				$("#pw").val(test[3]);
-				$("#name").val(test[4]);
-				$("#email").val(test[5]);
-				$("#phone").val(test[6]);
-				
-				//alert("정보 불러오기 성공");
+			if ($.trim(data) == "OK") {
+				console.log('수정이나 삭제 완료');
+				alert("회원탈퇴가 완료 되었습니다.");
+				var path = '/' + location.pathname.split('/')[1];
+				alert(path+ "/logout.nanum");
+				//location.href = path+ "/logout.nanum";
+				//location.reload();
+				//var url = "path+ "/logout.nanum"; 
+				alert(data);			
+				//$(location).attr('href',url);				
+			    
 			} else {
 				console.log('서버 에러');
+				alert("패스워드가 다릅니다.");
 			}
 		},
+		//async:false
 	}); // end ajax
 }
+
 function getContextPath() {
 	var hostIndex = location.href.indexOf(location.host)
 			+ location.host.length;
 	return location.href.substring(hostIndex, location.href.indexOf('/',
 			hostIndex + 1));
 }
+</script>
+
+<script type="text/javascript">
+	// null값 방지
+	function check() {	
+		var pw = $('#pw').val();
+		var hiddenPw = $('#hiddenPw').val();
+		console.log($('#hiddenPw').val());
+		console.log($('#pw').val());
+		
+		var aa = true;
+		
+ 		if (pw=="") {	 		
+			alert("비밀번호를 입력하세요.");
+			aa=false;
+		}
+		
+ 		else if (pw.trim() != hiddenPw.trim()) {
+			alert("비밀번호가 일치하지 않습니다.");
+			aa= false;
+		}		
+ 		
+		return aa;
+		
+	}
 </script>
 </head>
 <body class="is-preload">
@@ -146,18 +184,35 @@ function getContextPath() {
 								out.print(name);
 							%> 님 안녕하세요!
 						</h3></br>
-						<p>나눔의 민족 마이페이지 입니다.</p>
-						<ul class="meta">
-							<li class="icon fa-clock-o">5 days ago</li>
-							<li class="icon fa-comments"><a href="#">1,024</a></li>
-						</ul>
-						</header> <section> <span class="image featured"><img
-							src="<%=path%>/images/pic05.jpg" alt="" /></span>
-						<p>Phasellus quam turpis, feugiat sit amet ornare in,
-							hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu
-							ante risus. Aliquam erat volutpat. Aliquam luctus et mattis
-							lectus sit amet pulvinar. Nam turpis nisi consequat etiam lorem
-							ipsum dolor sit amet nullam.</p>
+						<p>나눔의 민족 개인정보수정 페이지 입니다.</p>						
+						</header> <section> <div class="contentwrap">
+  <article class="container">
+    <div class="page-header">
+    </div>
+    <form class="form-horizontal" method="post" name = "signUp" id="signUp">
+    <div class="form-group">
+    <label for="inputEmail" class="col-sm-2 control-label">아이디</label>
+    <div class="col-sm-6">
+    <input type="text" class="form-control" id="id" name="id" maxlength="12" value="<%=id%>" readonly/>   
+    <div id="idCheck"></div><br>
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="inputPassword" class="col-sm-2 control-label">현재 비밀번호</label>
+    <input type="hidden" id="hiddenPw">
+    <div class="col-sm-6">
+    <input type="password" class="form-control" id="pw" name="pw">    
+    </div>
+    </div>    
+    </form>
+    <div class="form-group">
+    <label for="inputName" class="col-sm-2 control-label"></label>
+    <div class="col-sm-6"></br>
+      <button type="submit" class="btn btn-primary" form="signUp" onclick="deleteUserInfo()" >회원탈퇴</button>
+    </div>
+    </div>    
+  </article>
+</div>
 						</section>
 					</div>
 					<div class="col-12">

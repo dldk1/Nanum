@@ -168,17 +168,29 @@ public class UserDAO {
 	}
 
 	// 사용자 정보 삭제
-	public static void delInfo(String u_idx) throws Exception {
+	
+	public static Boolean delInfo(String id, String pw) throws Exception {
 		// TODO Auto-generated method stub
-		Connection db = DBConn.getConnection();
+		Boolean isDelete=false;
+		
+		System.out.println(id);
+		System.out.println(pw);
+		
+		if(getUser(id,pw)) {
+			Connection db = DBConn.getConnection();
 
-		String sql = "delete from user where u_idx=?";
-		PreparedStatement pstmt = db.prepareStatement(sql);
-		pstmt.setString(1, u_idx);
+			String sql = "delete from user where id = ?";
+			PreparedStatement pstmt = db.prepareStatement(sql);
+			pstmt.setString(1, id);
 
-		// 쿼리실행
-		pstmt.executeUpdate();
-		db.close();
+			// 쿼리실행
+			pstmt.executeUpdate();
+			db.close();
+			
+			isDelete=true;
+		};
+	
+		return isDelete;
 	}
 
 	public static UserVO getUserInfo(String id) throws Exception {

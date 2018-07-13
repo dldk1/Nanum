@@ -84,20 +84,25 @@ public class ControllerServlet extends HttpServlet {
 			site = "member/memberModify.jsp";
 			break;
 
-		case "delinfo.nanum": // 사용자 정보 삭제 , 회원탈퇴
-			site = "DelInfoServlet";
-			System.out.println(site);
-			break;
-
 		case "getUserInfo.nanum": // 사용자 정보 확인
 			site = "GetInfoServlet";
-			System.out.println(site);
+			
 			break;
 
 		case "updateInfo.nanum": // 사용자 정보 수정
-			site = "UpdateInfoServlet";
+			site = "UpdateInfoServlet";			
+			break;
+
+		case "memberDelete.nanum": // 사용자 정보 수정
+			site = "member/memberDelete.jsp";
 			System.out.println(site);
 			break;
+			
+		case "delInfo.nanum": // 사용자 정보 삭제 , 회원탈퇴
+			site = "DelInfoServlet";
+			System.out.println(site);
+			break;
+			
 		default:
 			response.getWriter().append("error page");
 			break;

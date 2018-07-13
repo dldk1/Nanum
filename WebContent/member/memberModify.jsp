@@ -146,6 +146,7 @@ function updateUserInfo() {
 				console.log('서버 에러');
 			}
 		},
+		
 	}); // end ajax
 }
 
@@ -206,16 +207,14 @@ function callAutoHypen() {
 
 	// null값 방지
 	function check() {
-		
-		 
-
-	var ObjUserId = document.signUp.id;
+		var ObjUserId = document.signUp.id;
 		var ObjUserPassword = document.signUp.pw;
 
 		if (ObjUserId.value.length < 4) {
 			alert("아이디는 4자 이상 입력해야 합니다.");
 			return false;
 		}
+		
 		var pw = $('#pw').val();
 		var hiddenPw = $('#hiddenPw').val();
 		
@@ -381,7 +380,7 @@ function callAutoHypen() {
 								</h5>
 								</br>
 								<h5>
-									<a href="#">회원탈퇴</a>
+									<a href="memberDelete.nanum">회원탈퇴</a>
 								</h5>
 								</br>
 								</article>
