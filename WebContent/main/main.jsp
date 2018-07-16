@@ -1,3 +1,7 @@
+<%@page import="com.nanum.dao.UserDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.nanum.vo.FoodVO"%>
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,10 +10,12 @@
 	String name = (String) session.getAttribute("name");
 	String id = (String) session.getAttribute("id");
 	
+	FoodVO fVO = UserDAO.randomFood();
 %>
+
 <html>
 <head>
-<title>TXT by HTML5 UP</title>
+<title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title> 		
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -23,7 +29,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <!--  이미지 자동 변경 -->
 <script> 
 $(document).ready(function(){ 
@@ -61,9 +66,10 @@ $(".bx-start").click(function(){    //시작버튼 눌렀을때
 <style type="text/css">
 
 #userId {
-	font-size: 15px;
-	padding-left: 100px;	
+	font-size: 12px;
+	padding-left: 30px;	
 	text-decoration: none;
+	margin-right: -100px;
 }
 footer{
 position: relative;
@@ -114,7 +120,7 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 						<li>
 							<a href="#">배달나눔</a>
 							<ul>
-								<li><a href="#">현재 인기있는 나눔 물품</a></li>
+								<li><a href="board.nanum">현재 인기있는 나눔 물품</a></li>
 								<li><a href="#"> 나눔 예정인 물품</a></li>
 								<li>
 									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
@@ -147,7 +153,7 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
 					<li><a href="logout.nanum">Logout</a></li>
-					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님 안녕하세요!</b>	
+					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님! &nbsp 오늘은 <%=fVO.getStore() %>의 <%=fVO.getMenu()%> 어떠세요? </b>	
 					<%} %>							
 					</ul>					
 				</nav>		

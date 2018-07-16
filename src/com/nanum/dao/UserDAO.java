@@ -3,9 +3,12 @@ package com.nanum.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.nanum.db.DBConn;
+import com.nanum.vo.FoodVO;
 import com.nanum.vo.UserVO;
 
 public class UserDAO {
@@ -315,4 +318,55 @@ public class UserDAO {
 		return ret;
 	}
 
+	
+	public static FoodVO randomFood() {
+	
+	// DB 연결 코드 작성
+	Connection conn = null;
+	ArrayList<FoodVO> foodList = new ArrayList<>();
+
+	try {
+
+		conn = DBConn.getConnection();
+
+		// 데이터베이스에 연결후 쿼리 날림
+		PreparedStatement pstm = null; // SQL 문을 나타내는 객체
+		ResultSet rs = null; // 쿼리문을 날린것에 대한 반환값을 담을 객체
+
+		String sql = "SELECT * FROM bab"; // bab테이블
+
+		pstm = conn.prepareStatement(sql);
+		rs = pstm.executeQuery();
+
+		while (rs.next()) {
+			FoodVO vo = new FoodVO();
+			/* int idx = rs.getInt("idx");			
+			String store = rs.getString("store");
+			String menu = rs.getString("menu");
+			int price = rs.getInt("price"); */
+			vo.setIdx(rs.getInt("idx"));
+			vo.setStore(rs.getString("store"));
+			vo.setMenu(rs.getString("menu"));
+			vo.setPrice(rs.getInt("price"));
+
+			foodList.add(vo);
+
+		}
+		conn.close();
+	} catch (SQLException sqle) {
+		System.out.println("DB 접속실패 : " + sqle.toString());
+	} catch (Exception e) {
+		System.out.println("Unknown error");
+		e.printStackTrace();
+	}
+
+	Random rnd = new Random();
+	int rNum = rnd.nextInt(foodList.size());
+	FoodVO fVO = new FoodVO();
+	fVO = foodList.get(rNum); // 밥 리스트중 하나 뽑음
+	
+	return fVO;
+	}
+	
+	
 }

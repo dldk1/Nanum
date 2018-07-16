@@ -9,6 +9,8 @@ public class UserVO {
 	private String email;	// 이메일	
 	private int state;		// 회원 탈퇴여부
 	private String gender;  // 성별
+	
+	
 	public int getU_idx() {
 		return u_idx;
 	}

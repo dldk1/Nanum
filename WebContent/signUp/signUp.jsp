@@ -8,8 +8,9 @@ String path = request.getContextPath();
 String name = (String) session.getAttribute("name");
 String id = (String) session.getAttribute("id");
 %>
+
 	<head>
-		<title>회원가입</title>
+		<title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="<%=path %>/signUp/signUp.css" />

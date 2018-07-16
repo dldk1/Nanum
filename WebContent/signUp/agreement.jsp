@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title>
 </head>
 <body>
 넌 이용할 자격이 있는가?

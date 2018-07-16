@@ -8,7 +8,7 @@
 	String id = (String) session.getAttribute("id");	
 %>
 <head>
-<title>Left Sidebar - TXT by HTML5 UP</title>
+<title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -520,7 +520,7 @@ function callAutoHypen() {
     </form>
     <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label"></label>
-    <div class="col-sm-6" style="margin: auto; width: 20%;"><br><br>
+    <div class="col-sm-6"><br><br>
       <button type="submit" class="btn btn-primary" form="signUp" onclick="updateUserInfo()">수정 완료</button>
     </div>
     </div>    

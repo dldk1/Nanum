@@ -112,6 +112,11 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println(site);
 			break;
 
+		case "board.nanum": // 유저용 사용자 정보 삭제 , 회원탈퇴
+			site = "Board/bbs.jsp";
+			System.out.println(site);
+			break;			
+					
 		default:
 			response.getWriter().append("error page");
 			break;
