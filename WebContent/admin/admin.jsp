@@ -148,7 +148,51 @@ function getContextPath() {
 			hostIndex + 1));
 }
 </script>
+<script>
+//전화번호 하이픈
 
+ function autoHypenPhone(str) {
+
+		str = str.replace(/[^0-9]/g, '');
+		var tmp = '';
+		if (str.length < 4) {
+			return str;
+		} else if (str.length < 7) {
+			tmp += str.substr(0, 3);
+			tmp += '-';
+			tmp += str.substr(3);
+			return tmp;
+
+		} else if (str.length < 11) {
+			tmp += str.substr(0, 3);
+			tmp += '-';
+			tmp += str.substr(3, 3);
+			tmp += '-';
+			tmp += str.substr(6);
+			return tmp;
+
+		} else {
+			tmp += str.substr(0, 3);
+			tmp += '-';
+			tmp += str.substr(3, 4);
+			tmp += '-';
+			tmp += str.substr(7);
+			return tmp;
+		}
+		return str;
+	}
+
+
+function callAutoHypen() {
+	var cellPhone = document.getElementById('phone');
+	cellPhone.onkeyup = function(event) {
+		event = event || window.event;
+		var _val = this.value.trim();
+		this.value = autoHypenPhone(_val);
+	} 
+}
+	
+</script>
 </head>
 <body class="is-preload">
 	<div id="page-wrapper">
@@ -291,7 +335,7 @@ function getContextPath() {
 
 							<div class="form-group">
 								<label for="phone">전화번호</label> <input type="text"
-									class="form-control" id="phone">
+									class="form-control" id="phone" onfocus="callAutoHypen()" maxlength="12">
 							</div>
 						</div>
 						<div class="modal-footer">

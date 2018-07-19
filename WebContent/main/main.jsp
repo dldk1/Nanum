@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -210,7 +210,7 @@ function carousel() {
 					<%}else if(id.equals("admin")){ %>
 					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
 					<li><a href="logout.nanum">Logout</a></li>
-					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
+					<b id = userId> <%out.print(name);%>님 안녕하세요!</b>
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
 					<li><a href="logout.nanum">Logout</a></li>					
@@ -220,8 +220,7 @@ function carousel() {
 									
 				</nav>		
 		<section id="main">		
-		<div class="container">
-		<h1><p class="text-center"><b style="margin-top: -50px">나눔의 민족</b></p></h1>
+		<div class="container">		
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
@@ -233,11 +232,14 @@ function carousel() {
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="<%=path %>/images/05.jpg" style="width: 100%;">
+					<img src="<%=path %>/images/main1.png" style="width: 100%;">
 				</div>
 
 				<div class="item">
-					<img src="<%=path %>/images/06.jpg" style="width: 100%;">
+					<img src="<%=path %>/images/main2.png" style="width: 100%;">
+				</div>
+				<div class="item">
+					<img src="<%=path %>/images/main3.png" style="width: 100%;">
 				</div>
 
 			</div>
@@ -278,9 +280,7 @@ function carousel() {
 			</div>
 		</div>
 		<br>
-		<br>
-		
-		<img src="<%=path %>/images/number.png" style="width: 70%;">
+		<br>	
 
 		<br> <br>
 
@@ -289,7 +289,10 @@ function carousel() {
 			<div class="col-md-3 mb-3">
 				<div class="card h-100">
 					<div class="card-body">
+					<div style="text-align: center">
+						<i class="fas fa-mouse-pointer" style="font-size: 2.7em;"></i><br><br>
 						<h3 class="card-title">검색</h3><br>
+						</div>
 						<p class="card-text">검색하고자 하는 음식과 음식점의 위치를 파악하고 게시판을 검색 후
 							입력합니다.</p>
 						<br>
@@ -305,7 +308,10 @@ function carousel() {
 			<div class="col-md-3 mb-3 col-md-offset-1">
 				<div class="card h-100">
 					<div class="card-body">
+					<div style="text-align: center">
+						<i class="far fa-credit-card" style="font-size: 2.7em;"></i><br><br>
 						<h3 class="card-title">주문</h3><br>
+						</div>
 						<p class="card-text">최소주문금액이 맞춰지면 게시판 작성자가 주문을 합니다.</p>
 					</div>
 				</div>
@@ -313,12 +319,15 @@ function carousel() {
 			<div class="col-md-3 mb-3 col-md-offset-1">
 				<div class="card h-100">
 					<div class="card-body">
+					<div style="text-align: center">
+						<i class="far fa-clock" style="font-size: 2.7em;"></i><br><br>
 						<h3 class="card-title">대기</h3><br>
-						<p class="card-text">배달출발 시 배달원이 전송한 문자를 확인 후 도착예정시간에 맞춰
-							대기합니다.</p>
+						</div>
+						<p class="card-text">배달출발 시 배달원이 전송한 문자를 확인 후 도착예정시간에 맞춰 대기합니다.</p>
 						<br>
 						<p class="card-text">
 						<p class="text-danger">
+							<span class="glyphicons glyphicons-alert"></span>
 							<b>주의사항</b>
 						</p>
 						배달원이 도착하기 전에 대기해주세요.
@@ -327,6 +336,7 @@ function carousel() {
 				</div>
 			</div>
 		</div>
+
 	</div>
 	<br>
 	<br>
