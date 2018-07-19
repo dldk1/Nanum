@@ -39,26 +39,6 @@ color: gray;
 
 <script type="text/javascript">
 
-// 아이디 중복체크
-$(document).ready(function(){ // document가 다 읽어졌을 때 이 스크립트로 들어와랏
-    $('#id').keyup(function(){ // 눌렀다 뗐을 때 keyup 으로 들어와랏 (이벤트가 발생할 때마다 ajax 계속 발생)
-           var a = $('#id').val();
-           if(a.length > 0){
-               $.post("/TeamProject/CheckId", {"id": a}, function(data){
-                   if($.trim(data) == 0 && a.length > 3){
-                       $('#idCheck').html('<font color="blue">수정 가능한 아이디입니다.</font>');    
-                   }
-                   else {
-                       $('#idCheck').html('<font color="red">수정 불가능한 아이디입니다.</font>');    
-                   }
-               }, "json");
-           }
-           else {
-               $('#idCheck').text('');
-           }
-}) // keyup
-}); // ready 
-
 // 비밀번호 중복체크
 function checkPwd(){
 	  var f1 = document.forms[0];
@@ -79,14 +59,18 @@ function checkPwd(){
 <script type="text/javascript">
 $(document).ready(function(){ // document가 다 읽어졌을 때 이 스크립트로 들어와랏
     $('#email').keyup(function(){ // 눌렀다 뗐을 때 keyup 으로 들어와랏 (이벤트가 발생할 때마다 ajax 계속 발생)
-           var a = $('#email').val();
+           var a = $('#email').val();  
+           var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
            if(a.length > 0){
-               $.post("/TeamProject/CheckEmail", {"email": a}, function(data){
-                   if($.trim(data) == 0){
-                       $('#emailCheck').html('<font color="blue">수정가능한 이메일입니다.</font>');    
-                   }
+               $.post("/TeamProject/CheckEmail", {"email": a}, function(data){                   
+                    if(!emailRule.test($("input[id='email']").val())) {            
+                	   $('#emailCheck').html('<font color="red">사용불가능한 이메일입니다.</font>');                 	           
+                	}
+                    else if($.trim(data) == 0){
+                        $('#emailCheck').html('<font color="blue">사용가능한 이메일입니다.</font>');    
+                    }
                    else {
-                       $('#emailCheck').html('<font color="red">수정불가한 이메일입니다.</font>');    
+                       $('#emailCheck').html('<font color="red">중복된 이메일입니다.</font>');    
                    }
                }, "json");
            }
@@ -95,94 +79,13 @@ $(document).ready(function(){ // document가 다 읽어졌을 때 이 스크립�
            }
 }) // keyup
 }); // ready 
+
+
+
 </script>
-
-<script type="text/javascript">
-
-function getUserInfo(id) {	
-
-	var path = getContextPath();
-	console.log(path);
-	$.ajax({
-
-		type : 'POST',
-		url : path + "/getUserInfoForUser.nanum",
-
-		data : {
-			"id" : id
-		},
-
-		success : function(data) {
-			console.log(data);
-			var test = data.split('/');
-			if ($.trim(test[0]) == "OK") {
-				console.log('정보 불러오기 성공');
-				console.log(test);
-				$("#id").val(test[1]); //모달에서 id 값이 name인 곳에 값 설정 u_idx + name + pw + email + phone				
-				$("#hiddenPw").val(test[2]); 			
-				$("#name").val(test[3]);
-				$("#email").val(test[5]);
-				$("#phone").val(test[4]);				
-				//alert("정보 불러오기 성공");
-			} else {
-				console.log('서버 에러');
-			}
-		},
-	}); // end ajax
-}
-function updateUserInfo() {	
-	 if(!check()){
-		 return;
-	 }
-	var id = $("#id").val();
-	var newPw = $("#newPw").val();
-	var name = $("#name").val();
-	var email = $("#email").val();
-	var phone = $("#phone").val();
-
-	//if(u_idx==undefined)
-	//alert(u_idx + " 번호를 수정해야함" );
-	//return;
-	var path = getContextPath();
-	console.log(path);
-	$.ajax({
-
-		type : 'POST',
-		url : path + "/updateInfo.nanum",
-
-		data : {			
-			"id" : id,
-			"newPw" : newPw,
-			"name" : name,
-			"email" : email,
-			"phone" : phone
-		},
-
-		success : function(data) {
-			console.log(data);
-			if ($.trim(data) == "OK") {
-				console.log('수정 완료');
-				alert("수정이 완료되었습니다.");
-				location.reload();
-			} else {
-				console.log('서버 에러');
-			}
-		},
-		
-	}); // end ajax
-}
-
-function getContextPath() {
-	var hostIndex = location.href.indexOf(location.host)
-			+ location.host.length;
-	return location.href.substring(hostIndex, location.href.indexOf('/',
-			hostIndex + 1));
-}
-</script>
-
 <script>
-
 //전화번호 하이픈
+
  function autoHypenPhone(str) {
 
 		str = str.replace(/[^0-9]/g, '');
@@ -225,17 +128,97 @@ function callAutoHypen() {
 }
 	
 </script>
+
+<script type="text/javascript">
+
+function getUserInfo(id) {	
+
+	var path = getContextPath();
+	console.log(path);
+	$.ajax({
+
+		type : 'POST',
+		url : path + "/getUserInfoForUser.nanum",
+
+		data : {
+			"id" : id
+		},
+
+		success : function(data) {
+			console.log(data);
+			var test = data.split('/');
+			if ($.trim(test[0]) == "OK") {
+				console.log('정보 불러오기 성공');
+				console.log(test);
+				$("#id").val(test[1]); //모달에서 id 값이 name인 곳에 값 설정 u_idx + name + pw + email + phone				
+				$("#hiddenPw").val(test[2]); 			
+				$("#name").val(test[3]);
+				$("#email").val(test[4]);
+				$("#phone").val(test[5]);				
+				//alert("정보 불러오기 성공");
+			} else {
+				console.log('서버 에러');
+			}
+		},
+	}); // end ajax
+}
+function updateUserInfo() {	
+	 if(!check()){
+		 return;
+	 }
+	var id = $("#id").val();
+	var newPw = $("#newPw").val();
+	var name = $("#name").val();
+	var email = $("#email").val();
+	var phone = $("#phone").val();
+
+	//if(u_idx==undefined)
+	//alert(u_idx + " 번호를 수정해야함" );
+	//return;
+	var path = getContextPath();
+	console.log(path);
+	$.ajax({
+
+		type : 'POST',
+		url : path + "/updateInfo.nanum",
+
+		data : {			
+			"id" : id,
+			"newPw" : newPw,
+			"name" : name,
+			"email" : email,
+			"phone" : phone
+		},
+
+		success : function(data) {
+			console.log(data);
+			if ($.trim(data) == "OK") {
+				console.log('수정 완료');				
+				location.reload();
+			} else {
+				console.log('서버 에러');
+			}
+		},
+		
+	}); // end ajax
+	alert("수정이 완료되었습니다.");
+}
+
+function getContextPath() {
+	var hostIndex = location.href.indexOf(location.host)
+			+ location.host.length;
+	return location.href.substring(hostIndex, location.href.indexOf('/',
+			hostIndex + 1));
+}
+</script>
 <script type="text/javascript">
 
 	// null값 방지
 	function check() {
 		var ObjUserId = document.signUp.id;
 		var ObjUserPassword = document.signUp.pw;
-
-		if (ObjUserId.value.length < 4) {
-			alert("아이디는 4자 이상 입력해야 합니다.");
-			return false;
-		}
+		var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+		var phoneNumRule = /^\d{3}-\d{3,4}-\d{4}$/;		
 		
 		var pw = $('#pw').val();
 		var hiddenPw = $('#hiddenPw').val();
@@ -297,11 +280,7 @@ function callAutoHypen() {
 			alert("비밀번호에 연속된 문자열(123 또는 321, abc, cba 등)을\n3자 이상 사용 할 수 없습니다.");
 			return false;
 		}
-
-		if (!document.signUp.id.value) {
-			alert("아이디를 입력하세요.");
-			return false;
-		}
+	
 		if (!document.signUp.newPw.value) {
 			alert("비밀번호를 입력하세요.");
 			return false;
@@ -314,7 +293,10 @@ function callAutoHypen() {
 			alert("이메일을 입력하세요.");
 			return false;
 		}
-
+		if (!emailRule.test($("input[id='email']").val())) {
+			alert("사용불가능한 이메일입니다.");
+			return false;
+		}
 		if (!document.signUp.name.value) {
 			alert("이름을 입력하세요.");
 			return false;
@@ -323,7 +305,12 @@ function callAutoHypen() {
 		if (!document.signUp.phone.value) {
 			alert("전화번호를 입력하세요.");
 			return false;
-		} else {
+		} 
+		if (!phoneNumRule.test($("input[id='phone']").val())) {
+			alert("옳바른 전화번호가 아닙니다.");
+			return false;
+		} 
+		else {
 			return true;
 		}
 
@@ -461,11 +448,11 @@ function callAutoHypen() {
   <article class="container">
     <div class="page-header">
     </div>
-    <form class="form-horizontal" method="post" name = "signUp" id="signUp" ">
+    <form class="form-horizontal" method="post" name = "signUp" id="signUp">
     <div class="form-group">
-    <label for="inputEmail" class="col-sm-2 control-label">아이디</label>
+    <label for="inputId" class="col-sm-2 control-label" >아이디</label>
     <div class="col-sm-6">
-    <input type="text" class="form-control" id="id" name="id" maxlength="12">
+    <input type="text" class="form-control" id="id" name="id" maxlength="12" value="<%=id%>" readonly/>
     아이디는 최소 4글자 이상 입력해야 합니다.
     <div id="idCheck"></div>
     </div>
