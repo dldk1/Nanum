@@ -1,3 +1,5 @@
+<%@page import="com.nanum.dao.UserDAO"%>
+<%@page import="com.nanum.vo.FoodVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,6 +8,7 @@
 	String path = request.getContextPath();
 	String name = (String) session.getAttribute("name");
 	String id = (String) session.getAttribute("id");
+	FoodVO fVO = UserDAO.randomFood();
 %>
 <head>
 <title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title>
@@ -21,6 +24,7 @@
 }
 footer{
 margin:auto;
+margin-top:-50px;
 position: relative;
 font-size: 12px;
 text-decoration: none;
@@ -75,20 +79,18 @@ function getContextPath() {
 <body class="is-preload">
 	<div id="page-wrapper">
 
-		<!-- Header -->
-		<header id="header">
-		<div class="logo container">
-			<div>
-				<h1 style="text-transform: none;">
-					<a href="<%=path%>/myPage.nanum">My Page</a>
-				</h1>
-
-			</div>
-		</div>
-		</header>
-
-		<!-- Nav -->
-		<nav id="nav">
+<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							
+							<p>나눔의 민족! 여기와서 나누자!!</p>
+						</div>
+					</div>
+				</header>
+</div>
+			<!-- Nav -->
+	<nav id="nav">
 					<ul>
 						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
 						
@@ -107,7 +109,7 @@ function getContextPath() {
 						<li>
 							<a href="#">배달나눔</a>
 							<ul>
-								<li><a href="#">현재 인기있는 나눔 물품</a></li>
+								<li><a href="<%=path %>/board.nanum">현재 인기있는 나눔 물품</a></li>
 								<li><a href="#"> 나눔 예정인 물품</a></li>
 								<li>
 									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
@@ -115,6 +117,9 @@ function getContextPath() {
 								</li>
 								
 							</ul>
+						</li>
+						<li>
+						<a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a>
 						</li>
 						<li>
 							<a href="#">이벤트</a>
@@ -127,23 +132,22 @@ function getContextPath() {
 								</li>
 					</ul>
 					
-						<li>
-						<a href="#">고객센터</a>
-						</li>			
+									
 															
 					<%if(id == null){ %>
-					<li><a href="index.jsp" onclick="goPopup()">Login</a></li>
+					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
 					<%}else if(id.equals("admin")){ %>
 					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
 					<li><a href="logout.nanum">Logout</a></li>
 					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
-					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님 안녕하세요!</b>	
-					<%} %>							
-					</ul>					
-				</nav>		
+					<li><a href="logout.nanum">Logout</a></li>					
+					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님! &nbsp 오늘은 <%=fVO.getStore() %>의 <%=fVO.getMenu()%> 어떠세요? </b>	
+					<%} %>								
+					</ul>
+									
+				</nav>				
 
 		<!-- Main -->
 		<section id="main">
@@ -204,23 +208,20 @@ function getContextPath() {
 							<li class="icon fa-comments"><a href="#">1,024</a></li>
 						</ul>
 						</header> <section> <span class="image featured"><img
-							src="<%=path%>/images/pic05.jpg" alt="" /></span>
-						<p>Phasellus quam turpis, feugiat sit amet ornare in,
-							hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu
-							ante risus. Aliquam erat volutpat. Aliquam luctus et mattis
-							lectus sit amet pulvinar. Nam turpis nisi consequat etiam lorem
-							ipsum dolor sit amet nullam.</p>
+							src="<%=path%>/images/pic05.jpg"/></span>
+						<p>나눔의 민족 마이페이지</p>
 						</section>
 					</div>
 
 
 		</div>
-					<footer><br><br><br><br>
+</section>
+<footer>
 (주) 나눔의 민족<br>
 대구가톨릭대학교 공과대학 534호<br>
 대표전화 : 010-1234-1234<br>
 대표메일 : email@email.com
-</footer><br><br><br>
+</footer><br>
 		<!-- Scripts --> <script src="<%=path%>/assets/js/jquery.min.js"></script>
 		<script src="<%=path%>/assets/js/jquery.dropotron.min.js"></script> <script
 			src="<%=path%>/assets/js/jquery.scrolly.min.js"></script> <script
@@ -228,5 +229,6 @@ function getContextPath() {
 			src="<%=path%>/assets/js/breakpoints.min.js"></script> <script
 			src="<%=path%>/assets/js/util.js"></script> <script
 			src="<%=path%>/assets/js/main.js"></script>
+
 </body>
 </html>

@@ -31,6 +31,7 @@ public class ControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
 
 		String url = request.getRequestURL().toString();
 
@@ -113,10 +114,51 @@ public class ControllerServlet extends HttpServlet {
 			break;
 
 		case "board.nanum": // 유저용 사용자 정보 삭제 , 회원탈퇴
-			site = "Board/bbs.jsp";
+			site = "board/board_list.jsp";
 			System.out.println(site);
-			break;			
-					
+			break;
+
+		case "board_list.nanum": // board/board_list.jsp
+			site = "BoardListServlet";
+
+			break;
+		case "board_write.nanum": // board/board_write.jsp
+			site = "BoardWriteServlet";
+
+			break;
+		case "board_write_pro.nanum": // board/board_write_pro.jsp
+			site = "BoardWriteProServlet";
+			System.out.println(site);
+			break;
+		case "board_detail.nanum": // board/board_detail.jsp
+			site = "BoardDetailServlet";
+			System.out.println(site);
+			break;
+		case "delete_board.nanum": // board/delete_board.jsp
+			site = "DeleteBoardServlet";
+
+			break;
+		case "modify_board.nanum": // board/modify_board.jsp
+			site = "ModifyBoardServlet";
+
+			break;
+		case "modify_board_pro.nanum": // board/modify_board_pro.jsp
+			site = "ModifyBoardProServlet";
+
+			break;
+		case "add_reply.nanum": // board/add_reply.jsp
+			site = "AddReplyServlet";
+
+			break;
+		case "remove_reply.nanum": // board/remove_reply.jsp
+			site = "RemoveReplyServlet";
+
+			break;
+
+		case "rating.nanum": // board/remove_reply.jsp
+			site = "RatingServlet";
+
+			break;
 		default:
 			response.getWriter().append("error page");
 			break;

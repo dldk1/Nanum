@@ -62,7 +62,10 @@ public class LoginProc extends HttpServlet {
 				// 로그인 성공시 유지 시켜주기 위해 세션 값 설정
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id); // 값을 저장					
-				session.setAttribute("name", uvo.getName());					
+				session.setAttribute("name", uvo.getName());		
+				session.setAttribute("login_bean", uvo);		
+				UserVO login_bean = (UserVO)session.getAttribute("login_bean");
+				System.out.println(login_bean);
 							
 				out.println("YES");
 //				response.sendRedirect(path + "/login.nanum");

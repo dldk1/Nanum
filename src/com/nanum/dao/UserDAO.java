@@ -133,6 +133,7 @@ public class UserDAO {
 			vo = new UserVO();
 			vo.setName(rs.getString("name"));
 			vo.setId(rs.getString("id"));
+			vo.setU_idx(rs.getInt("U_idx"));
 			vo.setPhone(rs.getString("phone"));
 		}
 		db.close();

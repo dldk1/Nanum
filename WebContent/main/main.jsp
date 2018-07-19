@@ -8,8 +8,7 @@
 <%
 	String path = request.getContextPath();
 	String name = (String) session.getAttribute("name");
-	String id = (String) session.getAttribute("id");
-	
+	String id = (String) session.getAttribute("id");	
 	FoodVO fVO = UserDAO.randomFood();
 %>
 
@@ -19,12 +18,14 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+
 <link rel="stylesheet" href="<%=path %>/assets/css/main.css" />
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -79,19 +80,78 @@ text-decoration: none;
   text-indent: 6px;  
 color: gray;
 }
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 15px;
+  border: solid 2px grey;
+  outline: none;
+  color: black;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+#myBtn:hover {
+  background-color: #555;
+  color: white;
+}
 </style>
 <script>				
 function goPopup() {			
-window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=250');			
+window.open('login/loginForm.jsp','window','width=1000,height=750,left=570,top=200');			
 // window.open(URL,"팝업 구분값(팝업 1개일 경우 상관없음)","팝업 창 옵션")				
 }				
 </script>
 </head>
 <body class="homepage is-preload">
+<embed src="<%=path %>/ToMother.mp3" autostart="true" hidden="true"> 
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<header id="header">
+		<header id="header">
 					<div class="logo container">
 						<div>
 							
@@ -120,7 +180,7 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 						<li>
 							<a href="#">배달나눔</a>
 							<ul>
-								<li><a href="board.nanum">현재 인기있는 나눔 물품</a></li>
+								<li><a href="<%=path %>/board_list.nanum">현재 인기있는 나눔 물품</a></li>
 								<li><a href="#"> 나눔 예정인 물품</a></li>
 								<li>
 									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
@@ -128,6 +188,9 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 								</li>
 								
 							</ul>
+						</li>
+						<li>
+						<a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a>
 						</li>
 						<li>
 							<a href="#">이벤트</a>
@@ -140,26 +203,25 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 								</li>
 					</ul>
 					
-						<li>
-						<a href="#">고객센터</a>
-						</li>			
+									
 															
 					<%if(id == null){ %>
-					<li><a href="index.jsp" onclick="goPopup()">Login</a></li>
+					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
 					<%}else if(id.equals("admin")){ %>
 					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
 					<li><a href="logout.nanum">Logout</a></li>
 					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
+					<li><a href="logout.nanum">Logout</a></li>					
 					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님! &nbsp 오늘은 <%=fVO.getStore() %>의 <%=fVO.getMenu()%> 어떠세요? </b>	
-					<%} %>							
-					</ul>					
+					<%} %>								
+					</ul>
+									
 				</nav>		
-				
-	<div class="container">
-		<h1><p class="text-center"><b>나눔의 민족</b></p></h1>
+		<section id="main">		
+		<div class="container">
+		<h1><p class="text-center"><b style="margin-top: -50px">나눔의 민족</b></p></h1>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
@@ -195,16 +257,18 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 	<br>
 
 
-	<!--  구글지도 
-	 <iframe
+	<!--  구글지도  -->
+	<!-- <iframe
 		src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7792.376720191432!2d128.805493756368!3d35.9128068876473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3566726281568c53%3A0x73386aadf1c5fa44!2z64yA6rWs6rCA7Yao66at64yA7ZWZ6rWQ!5e1!3m2!1sko!2skr!4v1530689750167"
 		width="400" height="300" frameborder="0" style="border: 0"
-		allowfullscreen></iframe> -->
+		allowfullscreen></iframe>
 	<br>
 	<br>
 	<br>
-	<br>
+	<br> -->
 
+
+	<!-- Page Content -->
 	<div class="container">
 
 		<div class="row my-4">
@@ -213,6 +277,10 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 				<h2>나눔의 민족 이용방법</h2>
 			</div>
 		</div>
+		<br>
+		<br>
+		
+		<img src="<%=path %>/images/number.png" style="width: 70%;">
 
 		<br> <br>
 
@@ -271,7 +339,6 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 	<br>
 
 
-
 	<!-- Heading Row -->
 	<div class="container">
 		<div class="row my-4">
@@ -291,12 +358,12 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 				<div class="card h-100">
 					<div class="card-body">
 						<h3 class="card-title">음식점 검색</h3><br>
-						<p class="card-text">현재 주문하고자 하는 음식점을 검색합니다.</p>
+						<p class="card-text">현재 주문하고자 하는 음식점을 검색하거나 추천받습니다.</p>
 						<br>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-default">나와 가까운 음식점</a><br> <br>
-						<a href="#" class="btn btn-default">메뉴 추천받기</a>
+						<a href="<%=path %>/main/restaurant_info.jsp" class="btn btn-default">나와 가까운 음식점</a><br> <br> <!--  페이지 넘기기 -->
+						<a href="<%=path %>/main/FoodRecommendationPage2.jsp" class="btn btn-default">메뉴 추천받기</a> <!--  페이지 넘기기 -->
 					</div>
 				</div>
 			</div>
@@ -309,7 +376,7 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 						<br>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-default">게시판 바로가기</a>
+						<a href="<%=path %>/board.nanum" class="btn btn-default">게시판 바로가기</a> <!--  페이지 넘기기 -->
 					</div>
 				</div>
 			</div>
@@ -318,11 +385,11 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 				<div class="card h-100">
 					<div class="card-body">
 						<h3 class="card-title">원활한 결제</h3><br>
-						<p class="card-text">결제결제</p>
+						<p class="card-text">결제결제</p> 
 						<br>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-default">결제하기</a>
+						<a href="<%=path %>/main/Waiting.jsp" class="btn btn-default">결제하기</a> <!--  페이지 넘기기 -->
 					</div>
 				</div>
 			</div>
@@ -340,7 +407,7 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 						<br>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-default">도착시간 확인하기</a><br> <br>
+						<a href="<%=path %>/main/Waiting.jsp" class="btn btn-default">도착시간 확인하기</a><br> <br> <!--  페이지 넘기기 -->
 					</div>
 				</div>
 			</div>
@@ -353,7 +420,7 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 						<br>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-default">평가하기</a><br> <br>
+						<a href="<%=path %>/main/Rating.jsp" class="btn btn-default">평가하기</a><br> <br> <!--  페이지 넘기기 -->
 					</div>
 				</div>
 			</div>
@@ -366,9 +433,15 @@ window.open('login/loginForm.jsp','window','width=800,height=650,left=570,top=25
 	<br>
 	<br>
 	<br>
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<!-- /.container -->
-
+</section>
 <footer><br><br>
 (주) 나눔의 민족<br>
 대구가톨릭대학교 공과대학 534호<br>

@@ -9,7 +9,8 @@ public class UserVO {
 	private String email;	// 이메일	
 	private int state;		// 회원 탈퇴여부
 	private String gender;  // 성별
-	
+	private boolean login;	
+	private String attribute;
 	
 	public int getU_idx() {
 		return u_idx;
@@ -73,5 +74,21 @@ public class UserVO {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public boolean isLogin() {
+		return login;
+	}
+
+	public void setLogin(boolean login) {
+		this.login = login;
+	}
+
+	public String getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
 	}
 }

@@ -9,10 +9,7 @@
 String path = request.getContextPath();
 String name = (String) session.getAttribute("name");
 String id = (String) session.getAttribute("id");
-
-
-
-	ArrayList<UserVO> getUserList = (ArrayList<UserVO>) request.getAttribute("userList");
+ArrayList<UserVO> getUserList = (ArrayList<UserVO>) request.getAttribute("userList");
 	
 %>
 <head>
@@ -165,9 +162,7 @@ function getContextPath() {
 		</div>
 		</header>
 
-		<!-- Nav -->
-					<!-- Nav -->
-				<nav id="nav">
+	<nav id="nav">
 					<ul>
 						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
 						
@@ -186,7 +181,7 @@ function getContextPath() {
 						<li>
 							<a href="#">배달나눔</a>
 							<ul>
-								<li><a href="#">현재 인기있는 나눔 물품</a></li>
+								<li><a href="<%=path %>/board.nanum">현재 인기있는 나눔 물품</a></li>
 								<li><a href="#"> 나눔 예정인 물품</a></li>
 								<li>
 									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
@@ -194,6 +189,9 @@ function getContextPath() {
 								</li>
 								
 							</ul>
+						</li>
+						<li>
+						<a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a>
 						</li>
 						<li>
 							<a href="#">이벤트</a>
@@ -206,24 +204,24 @@ function getContextPath() {
 								</li>
 					</ul>
 					
-						<li>
-						<a href="#">고객센터</a>
-						</li>			
+									
 															
 					<%if(id == null){ %>
-					<li><a href="index.jsp" onclick="goPopup()">Login</a></li>
+					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
 					<%}else if(id.equals("admin")){ %>
 					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
 					<li><a href="logout.nanum">Logout</a></li>
 					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
-					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님 안녕하세요!</b>	
-					<%} %>							
-					</ul>					
-				</nav>	
+					<li><a href="logout.nanum">Logout</a></li>					
+					<b id = userId><%out.print(name);%></a> 님 안녕하세요! </b>	
+					<%} %>								
+					</ul>
+									
+				</nav>		
 <!--수정 부분-->
+<section id="main">
 	<div class="container">		
 		<h2>회원정보</h2>
 		<table class="table table-hover">
@@ -310,6 +308,7 @@ function getContextPath() {
 		<button type="button" class="btn btn-default" onclick="getUserInfo()">수정</button>
 		<button type="button" class="btn btn-danger" onclick="deleteUserInfo()">삭제</button>
 	</div>
+</section>	
 		<!-- Footer -->
 		<footer><br><br>
 (주) 나눔의 민족<br>
