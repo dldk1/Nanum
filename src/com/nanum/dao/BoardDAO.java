@@ -100,6 +100,7 @@ public class BoardDAO {
 				",(SELECT B.NAME FROM user B WHERE B.U_IDX=A.BOARD_WRITER_IDX) NAME  " + 
 				",(SELECT COUNT(*) FROM REPLY_TABLE C WHERE C.REPLY_BOARD_IDX=A.BOARD_IDX) REPLY_CNT  " + 
 				"FROM board_table A " + 
+				"WHERE A.BOARD_STATUS = 1 " +
 				"ORDER BY A.BOARD_IDX " + 
 				"limit ?, ?";
 		
@@ -152,6 +153,8 @@ public class BoardDAO {
 		// 쿼리실행
 		ResultSet rs = pstmt.executeQuery();
 		rs.next();
+		
+		
 		
 		int count = rs.getInt(1);
 		

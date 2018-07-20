@@ -67,6 +67,37 @@ $(function(){
 		</c:when>
 		<c:otherwise>
 		alert("로그인 해주세요");
+		
+					
+			window.open('login/loginForm.jsp','window','width=1000,height=750,left=570,top=200');		
+			
+			// window.open(URL,"팝업 	구분값(팝업 1개일 경우 상관없음)","팝업 창 옵션")	
+			function getContextPath() {						
+				var hostIndex = location.href.indexOf( location.host ) + location.host.length;					
+				return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );					
+			}						
+			
+			
+			
+			function closeLoginWindow(){		
+			var path = getContextPath();						
+			var theURL = path + "/board_list.nanum";						
+			// 호출 한 부모 페이지에서 URL 호출						
+			opener.window.location = theURL;						
+			// 호출 한 뒤 현재 팝업 창 닫기 이벤트						
+			close();						
+			}
+			
+			function closeSignUpWindow(){	
+				var path = getContextPath();						
+				var theURL = path + "/signUp.nanum";						
+				// 호출 한 부모 페이지에서 URL 호출						
+				opener.window.location = theURL;						
+				// 호출 한 뒤 현재 팝업 창 닫기 이벤트						
+				close();						
+				}
+			
+	
 		</c:otherwise>
 		</c:choose>
 	});

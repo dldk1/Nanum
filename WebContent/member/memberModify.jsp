@@ -217,6 +217,7 @@ function getContextPath() {
 	function check() {
 		var ObjUserId = document.signUp.id;
 		var ObjUserPassword = document.signUp.pw;
+		var ObjUserNewPassword = document.signUp.newPw;
 		var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 		var phoneNumRule = /^\d{3}-\d{3,4}-\d{4}$/;		
 		
@@ -234,6 +235,17 @@ function getContextPath() {
 		}
 
 		if (!ObjUserPassword.value
+				.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)) {
+			alert("비밀번호는 영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 8~16자까지, 영문은 대소문자를 구분합니다.");
+			return false;
+		}
+		
+		if (ObjUserNewPassword.value.length<8 || ObjUserPassword.value.length>16) {
+			alert("비밀번호는 영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 8~16자까지, 영문은 대소문자를 구분합니다.");
+			return false;
+		}
+
+		if (!ObjUserNewPassword.value
 				.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)) {
 			alert("비밀번호는 영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 8~16자까지, 영문은 대소문자를 구분합니다.");
 			return false;
