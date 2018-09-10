@@ -18,6 +18,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
 <link rel="stylesheet" href="<%=path %>/signUp/signUp.css" />
 <link rel="stylesheet" href="<%=path %>/assets/css/main.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
@@ -145,7 +146,7 @@ form .stars span {
 <script>
 
 function ratingSuccess() {
-	alert("평가가 완료되었습니다. 좋은 하루 되세요~");
+	alert("평가가 완료되었습니다. 감사합니다.");
 }
 
 </script>
@@ -159,8 +160,7 @@ function ratingSuccess() {
 				<header id="header">
 					<div class="logo container">
 						<div>
-							
-							<p>나눔의 민족! 여기와서 나누자!!</p>
+							<p><font color="dimgray">나눔의 민족</font></p>
 						</div>
 					</div>
 				</header>
@@ -169,46 +169,17 @@ function ratingSuccess() {
 	<nav id="nav">
 					<ul>
 						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
-						
-						<li><a href="#">소개</a>
-						<ul>
-						<li><a href="introduce.html">개발진들</a></li>
-						</ul>
+						<li><a href="<%=path %>/introduce/introduce10.jsp">소개</a>
 						</li>
-						
-						<li><a href="#">공지사항</a>
-						<ul>
-						<li><a href="#">개인정보 주의</a></li>
-						</ul>
-						</li>
-						
-						<li>
-							<a href="#">배달나눔</a>
+						<li><a href="<%=path%>/notice.nanum">공지사항</a></li>
+						<li><a href="#">배달나눔</a>
 							<ul>
-								<li><a href="<%=path %>/board.nanum">현재 인기있는 나눔 물품</a></li>
-								<li><a href="#"> 나눔 예정인 물품</a></li>
-								<li>
-									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
-									
-								</li>
-								
+								<li><a href="<%=path %>/board_list.nanum">배달나눔 게시판</a></li>
+								<li><a href="<%=path %>/rating_list.nanum">베스트 나눔인</a></li>
 							</ul>
 						</li>
-						<li>
-						<a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a>
-						</li>
-						<li>
-							<a href="#">이벤트</a>
-							<ul>
-								<li><a href="#">협력업체 이벤트</a></li>
-								<li><a href="#">시간할인 이벤트</a></li>
-								<li>
-									<a href="#">별점할인 이벤트</a>
-									
-								</li>
-					</ul>
-					
-									
+						<li><a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a></li>
+						<li><a href="<%=path%>/main/event.jsp">이벤트</a></li>
 															
 					<%if(id == null){ %>
 					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>

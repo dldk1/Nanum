@@ -11,6 +11,7 @@ response.setContentType("text/html; charset=utf-8");
 %>
 	<head>
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
 	<title>:: 나눔의 민족 :: 로그인</title>
 
 <style rel="stylesheet">
@@ -44,8 +45,8 @@ body .container .half {
   padding: 58px 40px 0;
 }
 body .container .half.bg {
-  background-image: url("<%=path%>/images/06.jpg");
-  background-size: 750px;
+  background-image: url("<%=path%>/images/018.jpg");  
+  background-size: 400px;
   background-repeat: no-repeat;
 }
 body .container h1 {

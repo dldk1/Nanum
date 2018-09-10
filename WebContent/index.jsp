@@ -9,9 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-
-	
+<body>	
 	
 	<script type="text/javascript">
 	//location.href="<%=path%>/join_us.nanum";	

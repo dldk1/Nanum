@@ -15,6 +15,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
 <link rel="stylesheet" href="<%=path%>/assets/css/main.css" />
 <link rel="stylesheet" href="<%=path %>/signUp/signUp.css" />
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -336,8 +337,7 @@ function getContextPath() {
 				<header id="header">
 					<div class="logo container">
 						<div>
-							
-							<p>나눔의 민족! 여기와서 나누자!!</p>
+							<p><font color="dimgray">My Page</font></p>
 						</div>
 					</div>
 				</header>
@@ -345,57 +345,29 @@ function getContextPath() {
 			<!-- Nav -->
 	<nav id="nav">
 					<ul>
-						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
-						
-						<li><a href="#">소개</a>
-						<ul>
-						<li><a href="introduce.html">개발진들</a></li>
-						</ul>
+					<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
+						<li><a href="<%=path %>/introduce/introduce10.jsp">소개</a>
 						</li>
-						
-						<li><a href="#">공지사항</a>
-						<ul>
-						<li><a href="#">개인정보 주의</a></li>
-						</ul>
-						</li>
-						
-						<li>
-							<a href="#">배달나눔</a>
+						<li><a href="<%=path%>/notice.nanum"">공지사항</a></li>
+						<li><a href="#">배달나눔</a>
 							<ul>
-								<li><a href="<%=path %>/board.nanum">현재 인기있는 나눔 물품</a></li>
-								<li><a href="#"> 나눔 예정인 물품</a></li>
-								<li>
-									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
-									
-								</li>
-								
+								<li><a href="<%=path %>/board_list.nanum">배달나눔 게시판</a></li>
+								<li><a href="<%=path %>/rating_list.nanum">베스트 나눔인</a></li>
 							</ul>
 						</li>
-						<li>
-						<a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a>
-						</li>
-						<li>
-							<a href="#">이벤트</a>
-							<ul>
-								<li><a href="#">협력업체 이벤트</a></li>
-								<li><a href="#">시간할인 이벤트</a></li>
-								<li>
-									<a href="#">별점할인 이벤트</a>
-									
-								</li>
-					</ul>
+						<li><a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a></li>
+						<li><a href="<%=path%>/main/event.jsp">이벤트</a></li>
 					
-									
 															
 					<%if(id == null){ %>
 					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
 					<%}else if(id.equals("admin")){ %>
 					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
+					<li><a href="<%=path %>/logout.nanum">Logout</a></li>
 					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>					
+					<li><a href="<%=path %>/logout.nanum">Logout</a></li>					
 					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님! &nbsp 오늘은 <%=fVO.getStore() %>의 <%=fVO.getMenu()%> 어떠세요? </b>	
 					<%} %>								
 					</ul>
@@ -428,14 +400,6 @@ function getContextPath() {
 								</h5>
 								</br>
 								<h5>
-									<a href="#">과거 나눔 이력</a>
-								</h5>
-								</br>
-								<h5>
-									<a href="#">나의 별점</a>
-								</h5>
-								</br>
-								<h5>
 									<a href="memberDelete.nanum">회원탈퇴</a>
 								</h5>
 								</br>
@@ -465,7 +429,7 @@ function getContextPath() {
     <label for="inputId" class="col-sm-2 control-label" >아이디</label>
     <div class="col-sm-6">
     <input type="text" class="form-control" id="id" name="id" maxlength="12" value="<%=id%>" readonly/>
-    아이디는 최소 4글자 이상 입력해야 합니다.
+    아이디는 최소 4글자 이상 입력해야 합니다.<br><br>
     <div id="idCheck"></div>
     </div>
     </div>
@@ -473,7 +437,7 @@ function getContextPath() {
     <label for="inputPassword" class="col-sm-2 control-label">현재 비밀번호</label>
     <input type="hidden" id="hiddenPw">
     <div class="col-sm-6">
-    <input type="password" class="form-control" id="pw" name="pw">    
+    <input type="password" class="form-control" id="pw" name="pw"><br>
     </div>
     </div>
     <div class="form-group">
@@ -487,19 +451,19 @@ function getContextPath() {
     <label for="inputPasswordCheck" class="col-sm-2 control-label">새 비밀번호 확인</label>
     <div class="col-sm-6">
     <input type="password" class="form-control" id="newPwCheck" name="newPwCheck" placeholder="비밀번호 확인" onkeyup="checkPwd()">
-      <div id="checkPwd">비밀번호를 한번 더 입력해주세요.</div>
+      <div id="checkPwd">비밀번호를 한번 더 입력해주세요.</div><br>
     </div>
     </div>
      <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label">이름</label>
     <div class="col-sm-6">
-    <input type="text" class="form-control" id="name"  name="name" >
+    <input type="text" class="form-control" id="name"  name="name" ><br>
     </div>
     </div>
     <div class="form-group">
     <label for="inputEmail" class="col-sm-2 control-label">이메일</label>
     <div class="col-sm-6">
-    <input type="email" class="form-control" id="email" name="email" >
+    <input type="email" class="form-control" id="email" name="email" ><br>
     <div id="emailCheck"></div>
     </div>
     </div>
@@ -515,7 +479,7 @@ function getContextPath() {
     <div class="col-sm-4">
     	<div>
     	<input id="radio1" type="radio" name="radio"  value="남자" checked="checked"><label for="radio1"><span><span></span></span>남자</label>
-    	<input id="radio2" type="radio" name="radio" value="여자"><label for="radio2"><span><span></span></span>여자</label>
+    	<input id="radio2" type="radio" name="radio" value="여자"><label for="radio2"><span><span></span></span>여자</label><br><br>
     	</div>
     </div>    
     </div>

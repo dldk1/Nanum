@@ -8,6 +8,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
+
 <title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title> 
 <style>
 .loader {
@@ -33,6 +35,7 @@
 }
 </style>
 </head>
+
  <script language="javascript">
       function window_onload(){
          setTimeout('go_url()',3000)  // 3초후 go_url() 함수를 호출한다.
@@ -42,12 +45,15 @@
          location.href="<%=path%>/main.nanum"  // 페이지 이동...
       }
   </script>
-
+      
 <body onload="javascript:window_onload()">
 <div class="container" style="text-align: center">
 <h2>서비스 준비중입니다.</h2>
-<h2>불편을 드려 죄송합니다.</h2>
-<h2>3초후 메인페이지로 이동합니다.</h2>
+<p>불편을 드려 죄송합니다.</p>
+<p>3초 후 메인페이지로 이동합니다.</p>
+
+
+
 <div class="loader"></div>
 </div>
 </body>

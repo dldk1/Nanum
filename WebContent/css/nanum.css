@@ -1,0 +1,44 @@
+
+#userId {
+	font-size: 12px;
+	padding-left: 30px;	
+	text-decoration: none;
+	margin-right: -100px;
+	font-weight: bold;
+}
+footer{
+position: relative;
+font-size: 12px;
+text-decoration: none;
+  text-align: center;
+  text-indent: 6px;  
+color: gray;
+}
+
+.click-table>tbody>tr {
+	/* 마우스 올렸을 때 손가락으로 표시*/
+	cursor: pointer;
+}
+
+/* .btn { */
+/* 	display: inline-block; */
+/* 	border: 2px solid black; */
+/* 	background-color: white; */
+/* 	color: black; */
+/* 	padding: 14px 28px; */
+/* 	font-size: 16px; */
+/* 	cursor: pointer; */
+/* 	margin: 50px; */
+/* } */
+
+
+/* Green */
+.success {
+	border-color: #4CAF50;
+	color: green;
+}
+
+.success:hover {
+	background-color: #4CAF50;
+	color: white;
+}

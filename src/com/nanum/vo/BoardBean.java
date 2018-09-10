@@ -12,7 +12,14 @@ public class BoardBean {
 	private int board_writer_idx;	// 작성자 인덱스
 	private String board_writer_name;	// 작성자 이름
 	private int reply_cnt;			// 댓글 개수
+	private String board_area_code;	// 지역코드
 	
+	public String getBoard_area_code() {
+		return board_area_code;
+	}
+	public void setBoard_area_code(String board_area_code) {
+		this.board_area_code = board_area_code;
+	}
 	public int getBoard_idx() {
 		return board_idx;
 	}

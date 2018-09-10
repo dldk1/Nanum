@@ -20,6 +20,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
 <link rel="stylesheet" href="<%=path %>/assets/css/main.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
@@ -73,8 +74,7 @@ color: gray;
 				<header id="header">
 					<div class="logo container">
 						<div>
-							
-							<p>나눔의 민족! 여기와서 나누자!!</p>
+							<p><font color="dimgray">메뉴추천</font></p>
 						</div>
 					</div>
 				</header>
@@ -82,56 +82,28 @@ color: gray;
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
-						
-						<li><a href="#">소개</a>
-						<ul>
-						<li><a href="introduce.html">개발진들</a></li>
-						</ul>
+						<li><a href="<%=path %>/introduce/introduce10.jsp">소개</a>
 						</li>
-						
-						<li><a href="#">공지사항</a>
-						<ul>
-						<li><a href="#">개인정보 주의</a></li>
-						</ul>
-						</li>
-						
-						<li>
-							<a href="#">배달나눔</a>
+						<li><a href="<%=path%>/notice.nanum"">공지사항</a></li>
+						<li><a href="#">배달나눔</a>
 							<ul>
-								<li><a href="<%=path %>/board.nanum">현재 인기있는 나눔 물품</a></li>
-								<li><a href="#"> 나눔 예정인 물품</a></li>
-								<li>
-									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
-									
-								</li>
-								
+								<li><a href="<%=path %>/board_list.nanum">배달나눔 게시판</a></li>
+								<li><a href="<%=path %>/rating_list.nanum">베스트 나눔인</a></li>
 							</ul>
 						</li>
-						<li>
-						<a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a>
-						</li>
-						<li>
-							<a href="#">이벤트</a>
-							<ul>
-								<li><a href="#">협력업체 이벤트</a></li>
-								<li><a href="#">시간할인 이벤트</a></li>
-								<li>
-									<a href="#">별점할인 이벤트</a>
-									
-								</li>
-					</ul>
-					
+						<li><a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a></li>
+						<li><a href="<%=path%>/main/event.jsp">이벤트</a></li>
 									
 															
 					<%if(id == null){ %>
 					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
 					<%}else if(id.equals("admin")){ %>
 					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
+					<li><a href="<%=path%>/logout.nanum">Logout</a></li>
 					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>					
+					<li><a href="<%=path%>/logout.nanum">Logout</a></li>					
 					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님! &nbsp 오늘은 <%=fVO.getStore() %>의 <%=fVO.getMenu()%> 어떠세요? </b>	
 					<%} %>								
 					</ul>
@@ -189,7 +161,7 @@ color: gray;
 		String rName = list.get(1);
 		String imgName = path+"/images/" + rName + ".jpg";
 	%>
-	<a style="color: red">
+	<a style="color: #F07878">
 	<%
 	out.print(rName);
 	%> </a>어떠신가요?
@@ -198,7 +170,7 @@ color: gray;
 	</div>
 		<div>			
 			<a href="javascript:location.reload()" class="btn success" style="margin-bottom: 0px;">다른메뉴 추천</a>
-			<a href='<%=path %>/board.nanum' class="btn success">주문하러 가기</a><br>
+			<a href='<%=path %>/board_list.nanum' class="btn success">주문하러 가기</a><br>
 			</div>
 	
 	</div>

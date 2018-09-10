@@ -54,6 +54,9 @@ public class BoardDetailServlet extends HttpServlet {
 				BoardDAO.addReadCnt(board_idx);
 			}
 			
+			
+			
+			
 			// 댓글 정보를 가져온다.
 			ArrayList<ReplyBean> reply_list = BoardDAO.getReplyList(board_idx);
 			request.setAttribute("reply_list", reply_list);

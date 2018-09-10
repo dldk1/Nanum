@@ -54,6 +54,7 @@ public class BoardWriteProServlet extends HttpServlet {
 			String board_subject = mr.getParameter("board_subject");
 			String board_content = mr.getParameter("board_content");
 			String board_image = mr.getFilesystemName("board_image");
+			String board_area_code = mr.getParameter("board_area_code");
 //			String board_info_idx_str = mr.getParameter("board_info_idx");
 //			int board_info_idx = Integer.parseInt(board_info_idx_str);
 			System.out.println(board_subject);
@@ -77,7 +78,8 @@ public class BoardWriteProServlet extends HttpServlet {
 			board_bean.setBoard_image(board_image);
 //			board_bean.setBoard_info_idx(board_info_idx);
 			board_bean.setBoard_writer_idx(board_writer_idx);
-			board_bean.setBoard_ip(board_ip);	
+			board_bean.setBoard_ip(board_ip);
+			board_bean.setBoard_area_code(board_area_code);
 			// 데이터 저장하는 메서드 호출
 			System.out.println(board_bean.getBoard_writer_idx());
 			int board_idx = BoardDAO.addBoardContent(board_bean);

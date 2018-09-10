@@ -16,7 +16,7 @@ ArrayList<UserVO> getUserList = (ArrayList<UserVO>) request.getAttribute("userLi
 <title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
+<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
 	<link rel="stylesheet" href="<%=path%>/signUp/signUp.css"/>
 <link rel="stylesheet" href="<%=path%>/assets/css/main.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -254,11 +254,11 @@ function callAutoHypen() {
 					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
 					<%}else if(id.equals("admin")){ %>
 					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
+					<li><a href="<%=path %>/logout.nanum">Logout</a></li>
 					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>					
+					<li><a href="<%=path %>/logout.nanum">Logout</a></li>					
 					<b id = userId><%out.print(name);%></a> 님 안녕하세요! </b>	
 					<%} %>								
 					</ul>

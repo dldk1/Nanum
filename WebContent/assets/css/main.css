@@ -2553,7 +2553,7 @@ input, select, textarea {
 		}
 
 		#footer h2.major {
-			margin: 0 0 1.5em 0;
+			margin: 0 0 1em 0;
 		}
 
 			#footer h2.major span {
@@ -3054,7 +3054,7 @@ input, select, textarea {
 		/* Footer */
 
 			#footer {
-				padding: 3em 0;
+				padding: 1em 0;
 			}
 
 		/* Copyright */

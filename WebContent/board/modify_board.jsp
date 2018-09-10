@@ -16,6 +16,7 @@
 <meta charset="UTF-8">
 <title>board/modify_board.jsp</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
 <link rel="stylesheet" href="<%=path %>/assets/css/main.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
@@ -121,47 +122,20 @@ color: gray;
 
 			<!-- Nav -->
 				<nav id="nav">
-					<ul>
+						<ul>
 						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
-						
 						<li><a href="#">소개</a>
-						<ul>
-						<li><a href="introduce.html">개발진들</a></li>
-						</ul>
+							<ul><li><a href="<%=path %>/introduce/introduce10.jsp"">개발진들</a></li></ul>
 						</li>
-						
-						<li><a href="#">공지사항</a>
-						<ul>
-						<li><a href="#">개인정보 주의</a></li>
-						</ul>
-						</li>
-						
-						<li>
-							<a href="#">배달나눔</a>
+						<li><a href="<%=path%>/notice.nanum">공지사항</a></li>
+						<li><a href="#">배달나눔</a>
 							<ul>
-								<li><a href="board.nanum">현재 인기있는 나눔 물품</a></li>
-								<li><a href="#"> 나눔 예정인 물품</a></li>
-								<li>
-									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
-									
-								</li>
-								
+								<li><a href="<%=path %>/board_list.nanum">현재 인기있는 나눔 물품</a></li>
+								<li><a href="<%=path %>/rating_list.nanum">베스트 나눔인</a></li>								
 							</ul>
 						</li>
-						<li>
-							<a href="#">이벤트</a>
-							<ul>
-								<li><a href="#">협력업체 이벤트</a></li>
-								<li><a href="#">시간할인 이벤트</a></li>
-								<li>
-									<a href="#">별점할인 이벤트</a>
-									
-								</li>
-					</ul>
-					
-						<li>
-						<a href="#">고객센터</a>
-						</li>			
+						<li><a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a></li>
+						<li><a href="<%=path%>/main/event.jsp">이벤트</a></li>	
 															
 					<%if(id == null){ %>
 					<li><a href="index.jsp" onclick="goPopup()">Login</a></li>
@@ -259,7 +233,7 @@ color: gray;
 					초기화
 				</button>
 				
-				<c:url var="path" value="board_detail.pj3">
+				<c:url var="path" value="board_detail.nanum">
 					<c:param name="info_idx" value="${param.info_idx}"/>
 					<c:param name="page" value="${param.page }"/>
 					<c:param name="board_idx" value="${param.board_idx }"/>

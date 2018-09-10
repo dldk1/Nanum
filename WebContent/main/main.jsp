@@ -9,7 +9,6 @@
 	String path = request.getContextPath();
 	String name = (String) session.getAttribute("name");
 	String id = (String) session.getAttribute("id");	
-	FoodVO fVO = UserDAO.randomFood();
 %>
 
 <html>
@@ -18,18 +17,15 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-
+<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
 <link rel="stylesheet" href="<%=path %>/assets/css/main.css" />
-	<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> 
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--  이미지 자동 변경 -->
 <script> 
 $(document).ready(function(){ 
@@ -65,7 +61,6 @@ $(".bx-start").click(function(){    //시작버튼 눌렀을때
 </script> 
 
 <style type="text/css">
-
 #userId {
 	font-size: 12px;
 	padding-left: 30px;	
@@ -95,11 +90,11 @@ color: gray;
   border-radius: 4px;
   background-color: white;
 }
-
 #myBtn:hover {
   background-color: #555;
   color: white;
 }
+
 </style>
 <script>				
 function goPopup() {			
@@ -154,8 +149,7 @@ function carousel() {
 		<header id="header">
 					<div class="logo container">
 						<div>
-							
-							<p>나눔의 민족! 여기와서 나누자!!</p>
+							<p><font color="dimgray">나눔의 민족</font></p>
 						</div>
 					</div>
 				</header>
@@ -164,60 +158,30 @@ function carousel() {
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="<%=path %>/main.nanum">Home</a></li>
-						
-						<li><a href="#">소개</a>
-						<ul>
-						<li><a href="introduce.html">개발진들</a></li>
-						</ul>
+						<li><a href="<%=path %>/introduce/introduce10.jsp">소개</a>
 						</li>
-						
-						<li><a href="#">공지사항</a>
-						<ul>
-						<li><a href="#">개인정보 주의</a></li>
-						</ul>
-						</li>
-						
-						<li>
-							<a href="#">배달나눔</a>
+						<li><a href="<%=path%>/notice.nanum"">공지사항</a></li>
+						<li><a href="#">배달나눔</a>
 							<ul>
-								<li><a href="<%=path %>/board_list.nanum">현재 인기있는 나눔 물품</a></li>
-								<li><a href="#"> 나눔 예정인 물품</a></li>
-								<li>
-									<a href="#">나와 가까운 곳에서 진행중인 나눔 물품</a>
-									
-								</li>
-								
+								<li><a href="<%=path %>/board_list.nanum">배달나눔 게시판</a></li>
+								<li><a href="<%=path %>/rating_list.nanum">베스트 나눔인</a></li>
 							</ul>
 						</li>
-						<li>
-						<a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a>
-						</li>
-						<li>
-							<a href="#">이벤트</a>
-							<ul>
-								<li><a href="#">협력업체 이벤트</a></li>
-								<li><a href="#">시간할인 이벤트</a></li>
-								<li>
-									<a href="#">별점할인 이벤트</a>
-									
-								</li>
-					</ul>
+						<li><a href="<%=path %>/main/FoodRecommendationPage2.jsp">메뉴 추천</a></li>
+						<li><a href="<%=path%>/main/event.jsp">이벤트</a></li>
 					
-									
-															
 					<%if(id == null){ %>
-					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
+						<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
 					<%}else if(id.equals("admin")){ %>
-					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
-					<b id = userId> <%out.print(name);%>님 안녕하세요!</b>
-					<%}else{ %>	
-					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>					
-					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님! &nbsp 오늘은 <%=fVO.getStore() %>의 <%=fVO.getMenu()%> 어떠세요? </b>	
-					<%} %>								
+						<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
+						<li><a href="<%=path %>/logout.nanum">Logout</a></li>
+						<b id = userId> <%out.print(name);%>님 안녕하세요!</b>
+					<% } else { FoodVO fVO = UserDAO.randomFood(); %>	
+						<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
+						<li><a href="<%=path %>/logout.nanum">Logout</a></li>					
+						<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님! &nbsp 오늘은 <%=fVO.getStore() %>의 <%=fVO.getMenu()%> 어떠세요? </b>	
+					<% } %>								
 					</ul>
-									
 				</nav>		
 		<section id="main">		
 		<div class="container">		
@@ -232,14 +196,13 @@ function carousel() {
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="<%=path %>/images/main1.png" style="width: 100%;">
-				</div>
-
-				<div class="item">
-					<img src="<%=path %>/images/main2.png" style="width: 100%;">
+					<img src="<%=path %>/images/main_img1.png" style="width: 100%;">
 				</div>
 				<div class="item">
-					<img src="<%=path %>/images/main3.png" style="width: 100%;">
+					<img src="<%=path %>/images/main_img2.png" style="width: 100%;">
+				</div>
+				<div class="item">
+					<img src="<%=path %>/images/main_img3.png" style="width: 100%;">
 				</div>
 
 			</div>
@@ -270,6 +233,7 @@ function carousel() {
 	<br> -->
 
 
+	<br><br><br><br><br><br>
 	<!-- Page Content -->
 	<div class="container">
 
@@ -338,15 +302,7 @@ function carousel() {
 		</div>
 
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<br><br><br><br><br><br><br><br><br>
 
 
 	<!-- Heading Row -->
@@ -372,7 +328,7 @@ function carousel() {
 						<br>
 					</div>
 					<div class="card-footer">
-						<a href="<%=path %>/main/restaurant_info.jsp" class="btn btn-default">나와 가까운 음식점</a><br> <br> <!--  페이지 넘기기 -->
+						<a href="<%=path %>/board/board_list.jsp" class="btn btn-default">나와 가까운 음식점</a><br> <br> <!--  페이지 넘기기 -->
 						<a href="<%=path %>/main/FoodRecommendationPage2.jsp" class="btn btn-default">메뉴 추천받기</a> <!--  페이지 넘기기 -->
 					</div>
 				</div>
@@ -395,7 +351,7 @@ function carousel() {
 				<div class="card h-100">
 					<div class="card-body">
 						<h3 class="card-title">원활한 결제</h3><br>
-						<p class="card-text">결제결제</p> 
+						<p class="card-text">원활한 결제를 위해 결제 페이지로 이동합니다.</p> 
 						<br>
 					</div>
 					<div class="card-footer">
@@ -438,28 +394,16 @@ function carousel() {
 		<!-- /.row -->
 
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<br>	<br><br><br><br><br><br><br><br><br><br><br>
 	<!-- /.container -->
 </section>
+
 <footer><br><br>
 (주) 나눔의 민족<br>
 대구가톨릭대학교 공과대학 534호<br>
 대표전화 : 010-1234-1234<br>
 대표메일 : email@email.com
 </footer><br><br><br>
-
-		
 
 		<!-- Scripts -->
 			<script src="<%=path %>/assets/js/jquery.min.js"></script>

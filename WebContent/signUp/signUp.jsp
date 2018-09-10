@@ -16,6 +16,7 @@ FoodVO fVO = UserDAO.randomFood();
 		<title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="shortcut icon" href="<%=path %>/favicon1.ico">
 		<link rel="stylesheet" href="<%=path %>/signUp/signUp.css" />
 		<link rel="stylesheet" href="<%=path %>/assets/css/main.css" />
 		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -43,7 +44,7 @@ color: gray;
 $(document).ready(function(){ // document가 다 읽어졌을 때 이 스크립트로 들어와랏
     $('#id').keyup(function(){ // 눌렀다 뗐을 때 keyup 으로 들어와랏 (이벤트가 발생할 때마다 ajax 계속 발생)
            var a = $('#id').val();
-           var idRule = /^[A-Za-z]{1}[A-Za-z0-9]{4,12}$/;
+           var idRule = /^[A-Za-z]{1}[A-Za-z0-9]{3,12}$/;
            if(a.length > 0){
                $.post("/TeamProject/CheckId", {"id": a}, function(data){
             	   if(!idRule.test($("input[id='id']").val())) {            
@@ -334,11 +335,11 @@ function callAutoHypen() {
 					<li><a href="<%=path %>/index.jsp" onclick="goPopup()">Login</a></li>
 					<%}else if(id.equals("admin")){ %>
 					<li><a href="<%=path %>/admin.nanum">관리자페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>
+					<li><a href="<%=path %>/logout.nanum">Logout</a></li>
 					<b id = userId> <a href="#"><%out.print(name);%></a> 님 안녕하세요!</b>
 					<%}else{ %>	
 					<li><a href="<%=path%>/myPage.nanum">마이페이지</a></li>
-					<li><a href="logout.nanum">Logout</a></li>					
+					<li><a href="<%=path %>/logout.nanum">Logout</a></li>					
 					<b id = userId> <a href="<%=path%>/myPage.nanum"><%out.print(name);%></a> 님! &nbsp 오늘은 <%=fVO.getStore() %>의 <%=fVO.getMenu()%> 어떠세요? </b>	
 					<%} %>								
 					</ul>
