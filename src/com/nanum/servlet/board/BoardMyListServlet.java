@@ -38,7 +38,10 @@ public class BoardMyListServlet extends HttpServlet {
 
 				// 페이지 번호를 파라미터로 가져온다.
 				String page_str = request.getParameter("page");
-				String u_idx_str = request.getParameter("u_idx");
+				System.out.println(page_str+"aa");
+				String u_idx_str =request.getParameter("u_idx");
+				System.out.println(u_idx_str+"bb");
+				
 				if (page_str == null || page_str == "" || page_str.equals("")) {
 					page_str = "1";
 				}
@@ -49,6 +52,7 @@ public class BoardMyListServlet extends HttpServlet {
 				int u_idx = Integer.parseInt(u_idx_str);
 				// 전체 페이지수를 구한다.
 				int page_cnt = BoardDAO.getPageCnt(u_idx);
+				
 				request.setAttribute("page_cnt", page_cnt);
 
 				// 페이지 번호가 전체 페이지수를 넘을 경우 처리
@@ -88,7 +92,8 @@ public class BoardMyListServlet extends HttpServlet {
 
 				request.setAttribute("pre_max", pre_max);
 				request.setAttribute("next_min", next_min);
-
+				
+				
 				// 게시판 글 리스트를 가져온다.
 				ArrayList<BoardBean> board_mylist = BoardDAO.getMyBoardList(page, u_idx);
 				request.setAttribute("board_mylist", board_mylist);

@@ -9,6 +9,7 @@
 	String path = request.getContextPath();
 	String name = (String) session.getAttribute("name");
 	String id = (String) session.getAttribute("id");	
+	//String u_idx = (String) session.getAttribute("u_idx");
 %>
 
 <html>

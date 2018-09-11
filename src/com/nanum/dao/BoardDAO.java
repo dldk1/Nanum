@@ -252,10 +252,12 @@ public class BoardDAO {
 		Connection db = DBConn.getConnection();
 
 		StringBuffer sql = new StringBuffer();
-		String sql2 = 
-				"select * from board_table where board_status = 1 and board_writer_idx = (select u_idx from user where u_idx = ?)"
-						+ " ORDER BY board_idx desc limit ?, ?";
-
+		String sql2 = "SELECT a.board_idx, a.board_subject,  a.board_read_cnt, a.board_area_code " + 
+				",(SELECT b.name FROM user b WHERE b.u_idx = a.board_writer_idx) name  " + 
+				",(SELECT COUNT(*) FROM reply_table c WHERE c.reply_board_idx=a.board_idx) reply_cnt  " + 
+				"FROM board_table a WHERE a.board_status = 1 and board_writer_idx = (select u_idx from user where u_idx = ?) " + 
+				"ORDER BY a.board_idx desc limit ?, ?";	
+		
 		//		sql2 = sql2.toLowerCase();
 		System.out.println(sql2);
 		System.out.println(u_idx);
@@ -284,10 +286,11 @@ public class BoardDAO {
 			// 데이터를 담는다.
 			bean.setBoard_idx(rs.getInt("board_idx"));
 			bean.setBoard_subject(rs.getString("board_subject"));
+			bean.setBoard_writer_name(rs.getString("name"));
 			bean.setBoard_read_cnt(rs.getInt("board_read_cnt"));
-			//			bean.setReply_cnt(rs.getInt("reply_cnt"));
+			bean.setReply_cnt(rs.getInt("reply_cnt"));
+			bean.setBoard_area_code(rs.getString("board_area_code"));
 			// ArrayList에 담는다.
-			//			System.out.println(bean.getBoard_idx());
 			list.add(bean);
 		}
 

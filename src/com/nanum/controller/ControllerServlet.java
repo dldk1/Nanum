@@ -307,6 +307,10 @@ public class ControllerServlet extends HttpServlet {
 			site = "BoardMyListServlet";
 			System.out.println(site);
 			break;
+		case "send_board_mylist.nanum":
+			site = "SendBoardMyListServlet";
+			System.out.println(site);
+			break;
 			
 		default:
 			response.getWriter().append("error page");

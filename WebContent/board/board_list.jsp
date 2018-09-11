@@ -317,7 +317,7 @@ img.emoji {
 				<th style="width:10%;text-align:center">작성자</th>
 				<th style="width:10%;text-align:center">조회수</th>				
 			</tr>
-		</thead>
+			</thead>		
 		<tbody>
 			<c:forEach var="item" items="${requestScope.board_list }">
 			<tr data-board-idx="${item.board_idx }">			

@@ -10,11 +10,9 @@
 	String id = (String) session.getAttribute("id");
 	String phone = (String) session.getAttribute("phone");
 	String email = (String) session.getAttribute("email");
-	FoodVO fVO = UserDAO.randomFood();
-	String u_idx = (String) session.getAttribute("u_idx");
-	if (u_idx == null) {
-		u_idx = "132";
-	}
+	Object u_idx=(Object)session.getAttribute("u_idx");	
+	
+	FoodVO fVO = UserDAO.randomFood();		
 %>
 <head>
 <title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title>
@@ -57,16 +55,16 @@ function getUserInfo(id) {
 		},
 
 		success : function(data) {
-			console.log(data);
-			var test = data.split('/');
+			console.log(data);			
+			var test = data.split('/');				
 			if ($.trim(test[0]) == "OK") {
 				console.log('정보 불러오기 성공');
 				console.log(test);
 				$("#id").val(test[1]); //모달에서 id 값이 name인 곳에 값 설정 u_idx + name + pw + email + phone				
 				$("#name").val(test[3]);
 				$("#email").val(test[4]);
-				$("#phone").val(test[5]);
-				
+				$("#phone").val(test[5]);				
+				${u_idx}
 				//alert("정보 불러오기 성공");
 			} else {
 				console.log('서버 에러');
@@ -151,6 +149,7 @@ function getContextPath() {
 								</br>
 								<h5>
 								<a href="board_mylist.nanum?u_idx=<%=u_idx%>">내가 쓴 게시글</a>
+								<%-- <a href="board_mylist.nanum?u_idx=<%=u_idx%>">내가 쓴 게시글</a> --%>
 								</h5>
 								</br>
 								<h5>
@@ -205,6 +204,7 @@ function getContextPath() {
     <input type="text" class="form-control" id="phone" name="phone" value="<%=phone%>" readonly/>   <br>
     </div>    
     </div>
+   
     </form>    
   </article>
 </div>

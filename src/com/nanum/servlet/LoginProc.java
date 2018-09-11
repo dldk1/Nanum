@@ -38,6 +38,7 @@ public class LoginProc extends HttpServlet {
 		// TODO Auto-generated method stub
 		// userid 와 userpw를 전달받아서
 		String id = request.getParameter("id");
+		System.out.println(id+"id000");
 		String pw = request.getParameter("pw");		
 		// UserVO를 전달해도 되고
 		UserVO vo = new UserVO();
@@ -61,6 +62,7 @@ public class LoginProc extends HttpServlet {
 			if (uvo != null) {
 				// 로그인 성공시 유지 시켜주기 위해 세션 값 설정
 				HttpSession session = request.getSession();
+				session.setAttribute("u_idx", uvo.getU_idx());
 				session.setAttribute("id", id); // 값을 저장					
 				session.setAttribute("name", uvo.getName());		
 				session.setAttribute("login_bean", uvo);		

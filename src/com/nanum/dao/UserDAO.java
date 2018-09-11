@@ -133,7 +133,7 @@ public class UserDAO {
 			vo = new UserVO();
 			vo.setName(rs.getString("name"));
 			vo.setId(rs.getString("id"));
-			vo.setU_idx(rs.getInt("U_idx"));
+			vo.setU_idx(rs.getInt("u_idx"));
 			vo.setPhone(rs.getString("phone"));
 		}
 		db.close();
@@ -248,6 +248,7 @@ public class UserDAO {
 		ResultSet rs = pstmt.executeQuery();
 		if (rs.next()) { // 검색된 데이터가 있으면 로그인 / 패스워드 체크 후 로그인 성공 여부
 			vo = new UserVO();
+			vo.setU_idx(rs.getInt("u_idx"));
 			vo.setId(rs.getString("id"));
 			vo.setPw(rs.getString("pw"));
 			vo.setName(rs.getString("name"));
