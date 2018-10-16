@@ -38,11 +38,11 @@ public class BoardDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try{
+		try{			
 			
 			// 파라미터 추출
-			String board_idx_str = request.getParameter("board_idx");
-			int board_idx = Integer.parseInt(board_idx_str);
+			String board_idx_str = request.getParameter("board_idx");			
+			int board_idx = Integer.parseInt(board_idx_str);			
 			// 게시글 정보를 가져온다.
 			BoardBean board_bean = BoardDAO.getBoardContent(board_idx);
 			request.setAttribute("board_bean", board_bean);
@@ -52,10 +52,7 @@ public class BoardDetailServlet extends HttpServlet {
 			UserVO login_bean = (UserVO)session.getAttribute("login_bean");
 			if(board_bean.getBoard_writer_idx() != login_bean.getU_idx()){
 				BoardDAO.addReadCnt(board_idx);
-			}
-			
-			
-			
+			}		
 			
 			// 댓글 정보를 가져온다.
 			ArrayList<ReplyBean> reply_list = BoardDAO.getReplyList(board_idx);

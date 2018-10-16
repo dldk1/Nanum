@@ -309,7 +309,7 @@ img.emoji {
 			<br>
 	<table class="table table-hover click-table">
 		<thead>
-		<caption align="right">전체 게시판</caption>
+		<caption align="right">부산 게시판</caption>
 			<tr>
 				<th style="width:10%;text-align:center">번호</th>			
 				<th>제목</th>
@@ -317,7 +317,7 @@ img.emoji {
 				<th style="width:10%;text-align:center">작성자</th>
 				<th style="width:10%;text-align:center">조회수</th>				
 			</tr>
-			</thead>		
+		</thead>
 		<tbody>
 			<c:forEach var="item" items="${requestScope.board_list }">
 			<tr data-board-idx="${item.board_idx }">			

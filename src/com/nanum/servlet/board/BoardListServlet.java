@@ -46,9 +46,9 @@ public class BoardListServlet extends HttpServlet {
 			// 전체 페이지수를 구한다.
 			int page_cnt = BoardDAO.getPageCnt();
 			request.setAttribute("page_cnt", page_cnt);
-
+//18
 			// 페이지 번호가 전체 페이지수를 넘을 경우 처리
-			if (page > page_cnt) {
+			if (page > page_cnt) { 
 				page = page_cnt;
 			}
 
@@ -60,8 +60,10 @@ public class BoardListServlet extends HttpServlet {
 			int temp1 = (page - 1) / 10;
 			// 최소 페이지 번호를 구한다.
 			int min_page = 1 + (temp1 * 10);
+			System.out.println(min_page+" 최소페이지");
 			// 최대 페이지 번호를 구한다.
 			int max_page = min_page + 10 - 1;
+			System.out.println(max_page+" 최대페이지");
 			// 최대 페이지 번호가 페이지수를 넘어간다면
 			if (max_page > page_cnt) {
 				max_page = page_cnt;

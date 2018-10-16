@@ -309,7 +309,7 @@ img.emoji {
 			<br>
 	<table class="table table-hover click-table">
 		<thead>
-		<caption align="right">전체 게시판</caption>
+		<caption align="right">전라남도 게시판</caption>
 			<tr>
 				<th style="width:10%;text-align:center">번호</th>			
 				<th>제목</th>

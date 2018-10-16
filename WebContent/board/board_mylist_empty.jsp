@@ -11,8 +11,6 @@
 String path = request.getContextPath();
 String name = (String) session.getAttribute("name");
 String id = (String) session.getAttribute("id");
-Object u_idx=(Object) session.getAttribute("u_idx");
-System.out.println(u_idx);
 %>
 <head>
 <title>::대한민국 1등 쉐어링 플랫폼, 나눔의 민족::</title>
@@ -173,32 +171,7 @@ img.emoji {
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
 
-	<table class="table table-hover click-table">
-		<thead>
-		<caption align="right">내가 쓴 게시글</caption>
-			<tr>
-				<th style="width:10%;text-align:center">번호</th>			
-				<th>제목</th>
-				<th style="width:10%;text-align:center">지역</th>
-				<th style="width:10%;text-align:center">작성자</th>
-				<th style="width:10%;text-align:center">조회수</th>	
-			</tr>
-		</thead>
-		<tbody>
-		<c:forEach var="item" items="${requestScope.board_mylist }">
-			<tr data-board-idx="${item.board_idx }">			
-				<td style="width:10%;text-align:center">${item.board_idx }</td>				
-				<td>${item.board_subject }[${item.reply_cnt }]</td>
-				<td style="width:10%;text-align:center">${item.board_area_code }</td>
-				<td style="width:10%;text-align:center">${item.board_writer_name }</td>
-				
-				<%-- 3자리마다 쉼표가 찍여있는 문자열로 만든다. --%>
-				<fmt:formatNumber var="str" value="${item.board_read_cnt }" type="number"/>
-				<td style="width:10%;text-align:center">${str }</td>
-				</tr>			
-			</c:forEach>
-		</tbody>
-	</table>
+	<h2>내가 쓴 게시글이 없습니다</h2>
 		<br/>
 	<br/>
 		<div style="text-align: right;">
@@ -210,21 +183,20 @@ img.emoji {
 	</a>
 	</c:if>
 	</div>
-	<!-- 2018.09.13 문제점 확인 여기서부터 수정해야함 -->
 	<div style="text-align:center">
 		<ul class="pagination">
-			<c:url var="path" value="/board_mylist.nanum?u_idx=<%=u_idx%>">				
+			<c:url var="path" value="/board_mylist.nanum">				
 				<c:param name="page" value="1"/>
 			</c:url>
 			<li><a href="${path }">&lt;&lt;</a></li>
 			
-			<c:url var="path" value="/board_mylist.nanum?u_idx=<%=u_idx %>">
+			<c:url var="path" value="/board_mylist.nanum">
 				
 				<c:param name="page" value="${requestScope.pre_max }"/>
 			</c:url>
 			<li><a href="${path }">&lt;</a></li>
 			<c:forEach var="i" begin="${requestScope.min_page }" end="${requestScope.max_page }">
-				<c:url var="path" value="/board_mylist.nanum?u_idx=<%=u_idx %>">
+				<c:url var="path" value="/board_mylist.nanum">
 				
 					<c:param name="page" value="${i }"/>
 				</c:url>
@@ -240,12 +212,12 @@ img.emoji {
 				<a href="${path }">${i }</a></li>
 			</c:forEach>	
 			
-			<c:url var="path" value="/board_mylist.nanum?u_idx=<%=u_idx %>">
+			<c:url var="path" value="/board_mylist.nanum">
 				
 				<c:param name="page" value="${requestScope.next_min }"/>
 			</c:url>
 			<li><a href="${path }">&gt;</a></li>
-			<c:url var="path" value="/board_mylist.nanum?u_idx=<%=u_idx %>">
+			<c:url var="path" value="/board_mylist.nanum">
 				
 				<c:param name="page" value="${requestScope.page_cnt }"/>
 			</c:url>

@@ -10,7 +10,7 @@ public class DBConn {
 		//String url = "jdbc:mysql://localhost:3306/nanum";
 		String driver = "com.mysql.jdbc.Driver";
 		String user = "root";
-		String pw = "1q2w3e4r5t";
+		String pw = "apmsetup";
 
 		// 드라이버 로딩(jar 파일 로드)
 		Class.forName(driver);

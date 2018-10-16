@@ -109,12 +109,15 @@ public class BoardDAO {
 
 		//		sql2 = sql2.toLowerCase();
 		System.out.println(sql2);
+		System.out.println(page+"페이지 ㅇㅇㅇ");
 		// 페이지에 해당하는 인덱스 번호를 구한다.
 		// 페이지당 10개...
 		int rows = 10;
-
+		
 		int min = ((page - 1) * rows);
+		System.out.println(min+" min은얼마");
 		int max = rows + min;
+		System.out.println(max+" max는얼마");
 
 
 		//		PreparedStatement pstmt = db.prepareStatement(sql.toString());
@@ -252,13 +255,35 @@ public class BoardDAO {
 		Connection db = DBConn.getConnection();
 
 		StringBuffer sql = new StringBuffer();
-		String sql2 = "SELECT a.board_idx, a.board_subject,  a.board_read_cnt, a.board_area_code " + 
-				",(SELECT b.name FROM user b WHERE b.u_idx = a.board_writer_idx) name  " + 
-				",(SELECT COUNT(*) FROM reply_table c WHERE c.reply_board_idx=a.board_idx) reply_cnt  " + 
-				"FROM board_table a WHERE a.board_status = 1 and board_writer_idx = (select u_idx from user where u_idx = ?) " + 
-				"ORDER BY a.board_idx desc limit ?, ?";	
+	
+	String sql2 ="SELECT a.board_idx, a.board_subject, a.board_read_cnt, a.board_area_code "
+				+ ",(SELECT b.name FROM user b WHERE b.u_idx = a.board_writer_idx) name "
+				+ ",(SELECT COUNT(*) FROM reply_table c WHERE c.reply_board_idx = a.board_idx) reply_cnt "
+				+ "FROM board_table a "
+				+ "WHERE a.board_status = 1 "
+				+ "and board_writer_idx = "
+				+ "(CASE "
+				+ "WHEN (select COUNT(*) from board_table where board_writer_idx = ?) = 0 "
+				+ "THEN 0 "
+				+ "ELSE ? "
+				+ "END) "
+				+ "ORDER BY board_idx desc limit ?, ?";
 		
-		//		sql2 = sql2.toLowerCase();
+
+	// 원래는 내가 쓴 글이 없으면 (board_writer_idx 카운터 값이 0) board_writer_idx가 0인 행을 가져올려고 했는데
+	// page처리 부분 (ORDER BY board_idx desc limit ?, ?)에서 syntax에러가 자꾸 발생
+	// ?,? 부분에 상수를 임의 입력(0,10)을 적용하면 잘되는데 매개변수에서 들어오는 page가 이상한듯?
+	System.out.println(page+"페이지");
+	// 근데 페이지도 0으로 잘들어옴 뭐지?
+	
+	
+	/*	원본
+	   "SELECT a.board_idx, a.board_subject, a.board_read_cnt, a.board_area_code " + 
+		",(SELECT b.name FROM user b WHERE b.u_idx = a.board_writer_idx) name  " + 
+		",(SELECT COUNT(*) FROM reply_table c WHERE c.reply_board_idx=a.board_idx) reply_cnt  " + 
+		"FROM board_table a WHERE a.board_status = 1 and board_writer_idx = (select u_idx from user where u_idx = ?) " + 
+		"ORDER BY a.board_idx desc limit ?, ?"; */
+				
 		System.out.println(sql2);
 		System.out.println(u_idx);
 		// 페이지에 해당하는 인덱스 번호를 구한다.
@@ -268,15 +293,15 @@ public class BoardDAO {
 		int min = ((page - 1) * rows);
 		int max = rows + min;
 
-
-		//		PreparedStatement pstmt = db.prepareStatement(sql.toString());
+		//PreparedStatement pstmt = db.prepareStatement(sql.toString());
 		PreparedStatement pstmt = db.prepareStatement(sql2);		
 		pstmt.setInt(1, u_idx);
-		pstmt.setInt(2, min);
-		pstmt.setInt(3, max);
-
-		ResultSet rs = pstmt.executeQuery();
-
+		pstmt.setInt(2, u_idx);		
+		pstmt.setInt(3, min);
+		pstmt.setInt(4, max);
+		
+		ResultSet rs = pstmt.executeQuery();		
+		
 		// 데이터를 담을 ArrayList를 만들어 준다.
 		ArrayList<BoardBean> list = new ArrayList<BoardBean>();
 
@@ -285,11 +310,12 @@ public class BoardDAO {
 			BoardBean bean = new BoardBean();
 			// 데이터를 담는다.
 			bean.setBoard_idx(rs.getInt("board_idx"));
+			bean.setBoard_area_code(rs.getString("board_area_code"));
 			bean.setBoard_subject(rs.getString("board_subject"));
 			bean.setBoard_writer_name(rs.getString("name"));
 			bean.setBoard_read_cnt(rs.getInt("board_read_cnt"));
 			bean.setReply_cnt(rs.getInt("reply_cnt"));
-			bean.setBoard_area_code(rs.getString("board_area_code"));
+			
 			// ArrayList에 담는다.
 			list.add(bean);
 		}
